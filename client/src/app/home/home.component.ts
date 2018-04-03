@@ -161,12 +161,12 @@ export class HomeComponent {
     appropriateResponsePopUp(): void {
 
         var doPopup: boolean = this.intenseEmotionResponse();
-        if(doPopup){
+        /*if(doPopup){
             this.dialog.open(EmotionResponseComponent, {
                 width: '70vw',
                 height: '70%',
             });
-        } else if(this.selectedEmotion.toLowerCase() == 'happy') {
+        } else*/ if(this.selectedEmotion.toLowerCase() == 'happy') {
             this.dialog.open(EmotionResponseHappyComponent, {
                 width: '70vw',
                 height: '70%',
@@ -182,7 +182,7 @@ export class HomeComponent {
         console.log("the selected emoji is: " + this.selectedEmotion);
         console.log("the emoji rating is:   " + this.emojiRating);
         if(this.selectedEmotion.toLowerCase() == 'sad' || this.selectedEmotion.toLowerCase() == 'mad' || this.selectedEmotion.toLowerCase() == 'scared' || this.selectedEmotion.toLowerCase() == 'anxious'){
-            if(this.emojiRating >= 3){
+            if(this.emojiRating >= 0){
                 return true;
             }
         }
