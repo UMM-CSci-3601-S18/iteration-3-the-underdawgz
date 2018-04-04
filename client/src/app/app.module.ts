@@ -9,6 +9,9 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 
 import {ResourcesComponent} from "./resources/resources.component";
+import {AddResourceComponent} from "./resources/add-resource.component";
+import {ResourcesSevices} from "./resources/resources.sevice";
+
 
 import {EmotionService} from "./home/home.service";
 
@@ -19,6 +22,10 @@ import {AddGoalComponent} from "./goals/add-goal.component";
 
 import {EmotionResponseComponent} from "./home/emotion-response.component";
 import {EmotionResponseHappyComponent} from "./home/emotion-response-happy.component";
+import {EmotionResponseSadComponent} from "./home/emotion-response-sad.component";
+import {EmotionResponseMadComponent} from "./home/emotion-response-mad.component";
+import {EmotionResponseScaredComponent} from "./home/emotion-response-scared.component";
+import {EmotionResponseAnxiousComponent} from "./home/emotion-response-anxious.component";
 
 import {SummaryListComponent} from "./summary/summary-list.component";
 import {SummaryListService} from "./summary/summary-list.service";
@@ -40,6 +47,7 @@ import {JournalsService} from "./Journal/journals.service";
         AppComponent,
         HomeComponent,
         ResourcesComponent,
+       AddResourceComponent,
 
         GoalsComponent,
         AddGoalComponent,
@@ -50,7 +58,11 @@ import {JournalsService} from "./Journal/journals.service";
         EditGoalComponent,
         SummaryListComponent,
         EmotionResponseComponent,
-        EmotionResponseHappyComponent
+        EmotionResponseHappyComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
+        EmotionResponseAnxiousComponent
     ],
     providers: [
     GoalsService,
@@ -66,7 +78,13 @@ import {JournalsService} from "./Journal/journals.service";
         EditGoalComponent,
         EmotionResponseComponent,
         EmotionResponseHappyComponent,
-        AddJournalComponent
+        AddJournalComponent,
+        AddResourceComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
+        EmotionResponseAnxiousComponent
+
     ],
     bootstrap: [AppComponent]
 })
