@@ -19,6 +19,9 @@ import {AddGoalComponent} from "./goals/add-goal.component";
 
 import {EmotionResponseComponent} from "./home/emotion-response.component";
 import {EmotionResponseHappyComponent} from "./home/emotion-response-happy.component";
+import {EmotionResponseSadComponent} from "./home/emotion-response-sad.component";
+import {EmotionResponseMadComponent} from "./home/emotion-response-mad.component";
+import {EmotionResponseScaredComponent} from "./home/emotion-response-scared.component";
 import {EmotionResponseAnxiousComponent} from "./home/emotion-response-anxious.component";
 
 import {SummaryListComponent} from "./summary/summary-list.component";
@@ -52,6 +55,9 @@ import {JournalsService} from "./Journal/journals.service";
         SummaryListComponent,
         EmotionResponseComponent,
         EmotionResponseHappyComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
         EmotionResponseAnxiousComponent,
     ],
     providers: [
@@ -68,6 +74,9 @@ import {JournalsService} from "./Journal/journals.service";
         EditGoalComponent,
         EmotionResponseComponent,
         EmotionResponseHappyComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
         EmotionResponseAnxiousComponent,
         AddJournalComponent
     ],

@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment';
 @Component({
     selector: 'emotion-response-anxious-component',
     templateUrl: 'emotion-response-anxious.component.html',
-    styleUrls: ['emotion-response.component.css']
+    styleUrls: ['emotion-response-anxious.component.css']
 })
 
 export class EmotionResponseAnxiousComponent {
