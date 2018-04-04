@@ -29,6 +29,10 @@ import {JournalsComponent} from "./Journal/journals.component";
 import {AddJournalComponent} from "./Journal/add-journal.component";
 import {JournalsService} from "./Journal/journals.service";
 
+import {CrisisComponent} from "./crisis/crisis.component";
+import {CrisisService} from "./crisis/crisis.service";
+import {AddCrisisComponent} from "./crisis/add-crisis.component";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -50,12 +54,17 @@ import {JournalsService} from "./Journal/journals.service";
         EditGoalComponent,
         SummaryListComponent,
         EmotionResponseComponent,
-        EmotionResponseHappyComponent
+        EmotionResponseHappyComponent,
+
+        CrisisComponent,
+        AddCrisisComponent,
+
     ],
     providers: [
     GoalsService,
     JournalsService,
     EmotionService,
+        CrisisService,
     SummaryListService,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
@@ -66,7 +75,8 @@ import {JournalsService} from "./Journal/journals.service";
         EditGoalComponent,
         EmotionResponseComponent,
         EmotionResponseHappyComponent,
-        AddJournalComponent
+        AddJournalComponent,
+        AddCrisisComponent
     ],
     bootstrap: [AppComponent]
 })
