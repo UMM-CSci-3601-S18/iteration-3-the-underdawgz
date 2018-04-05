@@ -11,7 +11,7 @@
         you can refer to one of these hotlines for help.</mat-card-subtitle>
 
             <!-- First number -->
-            <!--<mat-expansion-panel #elem class="phone-numbers-to-call">
+            <mat-expansion-panel #elem class="phone-numbers-to-call">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="hotline-company-name">Suicide Prevention Lifeline</mat-panel-title>
                 </mat-expansion-panel-header>
@@ -23,7 +23,7 @@
                 <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 1-800-273-8255</mat-panel-description>
             </mat-expansion-panel>
 
-        &lt;!&ndash; Second number &ndash;&gt;
+        <!-- Second number -->
         <mat-expansion-panel #elem class="phone-numbers-to-call">
             <mat-expansion-panel-header>
                 <mat-panel-title class="hotline-company-name">Crisis Hotline</mat-panel-title>
@@ -37,7 +37,7 @@
             <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 775-784-8090</mat-panel-description>
         </mat-expansion-panel>
 
-        &lt;!&ndash; Third number &ndash;&gt;
+        <!-- Third number -->
         <mat-expansion-panel #elem class="phone-numbers-to-call">
             <mat-expansion-panel-header>
                 <mat-panel-title class="hotline-company-name">Crisis Text Line</mat-panel-title>
@@ -49,7 +49,7 @@
                 donating their time to helping people in crisis.</mat-panel-description>
             <br>
             <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">message</mat-icon> 741741</mat-panel-description>
-        </mat-expansion-panel>-->
+        </mat-expansion-panel>
 
 
         <br>
@@ -58,16 +58,16 @@
     </div>
 
     <!-- Resources Card -->
-   <!-- <div class="main-div">
+   <div class="main-div">
         <mat-card class="main-card">
-            <mat-card-title id="main-thing-title">{{ this.title}}</mat-card-title>
+            <h2>Resources</h2>
             <mat-divider></mat-divider>
             <mat-card-header>This is a breathing exercise for when you are feeling stressed out. Breathe in as the image is building and out as the image shrinks.</mat-card-header>
             <mat-card-content>
                 <img id="breathing" width= "100%" src="../../assets/images/ezgif.com-resize.gif">
             </mat-card-content>
         </mat-card>
-    </div>-->
+    </div>
 
     <!-- Links Card -->
     <div class="resources-div">
@@ -75,15 +75,7 @@
         <mat-card-title id="resources-title">Links</mat-card-title>
         <mat-card-subtitle>These links take you to helpful pages.</mat-card-subtitle>
 
-
-
-
-
                 <ul class="content-item" id="addNewResource"><button mat-raised-button (click)="openDialog()" class="resource-button"><mat-icon id="add-icon"> </mat-icon>Add a link</button></ul>
-                <br>
-
-
-
 
         <mat-card-content>
             <a href="https://depression.org.nz/get-better/self-help/" target="_blank">Depression Help</a>
@@ -106,11 +98,9 @@
             <mat-card> <mat-card-title class="your-resources-title">Your Added Links</mat-card-title>
             <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
             <div layout="row" layout-wrap>
-                <mat-card #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResource( resourceTitle,resourceLink)">
+                <mat-card #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)">
                     <mat-panel-description id="titleContent"><Strong><i>{{resource.title}}</i></Strong></mat-panel-description><br>
                     <mat-panel-description id="linkContent">{{resource.link}}</mat-panel-description>
-                    <br>
-
 
                 </mat-card>
             </div>

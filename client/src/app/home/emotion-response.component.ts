@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Resource} from './resource';
+import {ResourceEmotion} from './resourceEmotion';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 
@@ -26,7 +26,7 @@ export class EmotionResponseComponent {
 
 
     onYesClick(): void{
-        var linkObservable: Observable<Resource[]> = this.getLinks();
+        var linkObservable: Observable<ResourceEmotion[]> = this.getLinks();
         linkObservable.subscribe(
             links => {
                 console.log("successfully retrieved resource links from the database");
@@ -49,8 +49,8 @@ export class EmotionResponseComponent {
 
     }
 
-    getLinks(): Observable<Resource[]> {
-        return this.http.get<Resource[]>(this.resourceUrl);
+    getLinks(): Observable<ResourceEmotion[]> {
+        return this.http.get<ResourceEmotion[]>(this.resourceUrl);
     }
 
     onExitClick(): void {

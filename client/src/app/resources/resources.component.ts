@@ -72,7 +72,7 @@ export class ResourcesComponent implements OnInit {
             });
         }
 
-        // Filter by body
+        // Filter by link
         if (searchLink != null) {
             searchLink = searchLink.toLocaleLowerCase();
 

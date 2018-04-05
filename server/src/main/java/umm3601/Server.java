@@ -104,8 +104,9 @@ public class Server {
 
         //Resources for appropriate response
         get("api/resources", resourceRequestHandler::getResources);
-      //  get("api/resources/:id", resourceRequestHandler::getResourcesJSON);
-     //   post("api/resources/new", resourceRequestHandler::addNewResources);
+        get("api/resources/:id", resourceRequestHandler::getResourceJSON);
+        post("api/resources/new", resourceRequestHandler::addNewResource);
+
 
         //List journals, filtered using query parameters
 
