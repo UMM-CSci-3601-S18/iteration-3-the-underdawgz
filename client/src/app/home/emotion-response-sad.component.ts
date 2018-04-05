@@ -7,17 +7,17 @@ import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
 
 @Component({
-    selector: 'emotion-response-happy-component',
-    templateUrl: 'emotion-response-happy.component.html',
-    styleUrls: ['emotion-response-happy.component.css']
+    selector: 'emotion-response-sad-component',
+    templateUrl: 'emotion-response-sad.component.html',
+    styleUrls: ['emotion-response-sad.component.css']
 })
 
-export class EmotionResponseHappyComponent {
+export class EmotionResponseSadComponent {
     giveResponse : boolean = false;
     resourceUrl : string = environment.API_URL + 'resources';
 
 
-    constructor(public dialogRef: MatDialogRef<EmotionResponseHappyComponent>,
+    constructor(public dialogRef: MatDialogRef<EmotionResponseSadComponent>,
                 private http: HttpClient) {
     }
 

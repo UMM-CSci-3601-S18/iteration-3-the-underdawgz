@@ -19,6 +19,10 @@ import {AddGoalComponent} from "./goals/add-goal.component";
 
 import {EmotionResponseComponent} from "./home/emotion-response.component";
 import {EmotionResponseHappyComponent} from "./home/emotion-response-happy.component";
+import {EmotionResponseSadComponent} from "./home/emotion-response-sad.component";
+import {EmotionResponseMadComponent} from "./home/emotion-response-mad.component";
+import {EmotionResponseScaredComponent} from "./home/emotion-response-scared.component";
+import {EmotionResponseAnxiousComponent} from "./home/emotion-response-anxious.component";
 
 import {SummaryListComponent} from "./summary/summary-list.component";
 import {SummaryListService} from "./summary/summary-list.service";
@@ -49,7 +53,7 @@ import {AddCrisisComponent} from "./crisis/add-crisis.component";
         AddGoalComponent,
 
         JournalsComponent,
-       AddJournalComponent,
+        AddJournalComponent,
 
         EditGoalComponent,
         SummaryListComponent,
@@ -59,6 +63,11 @@ import {AddCrisisComponent} from "./crisis/add-crisis.component";
         CrisisComponent,
         AddCrisisComponent,
 
+        EmotionResponseHappyComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
+        EmotionResponseAnxiousComponent,
     ],
     providers: [
     GoalsService,
@@ -77,6 +86,11 @@ import {AddCrisisComponent} from "./crisis/add-crisis.component";
         EmotionResponseHappyComponent,
         AddJournalComponent,
         AddCrisisComponent
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
+        EmotionResponseAnxiousComponent,
+        AddJournalComponent
     ],
     bootstrap: [AppComponent]
 })
