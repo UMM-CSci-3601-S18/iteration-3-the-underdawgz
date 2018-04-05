@@ -84,9 +84,10 @@ public class GoalRequestHandler {
                     String name = dbO.getString("goal");
                     String category = dbO.getString("category");
                     String goal = dbO.getString("name");
+                    Boolean status = dbO.getBoolean("status");
 
-                    System.err.println("Adding new goal [goal=" + goal + ", category=" + category + " name=" + name + ']');
-                    return goalController.addNewGoal(goal, category, name).toString();
+                    System.err.println("Adding new goal [goal=" + goal + ", category=" + category + " name=" + name + "status" + status + ']');
+                    return goalController.addNewGoal(goal, category, name, status)/*.toString()*/;
                 }
                 catch(NullPointerException e)
                 {
