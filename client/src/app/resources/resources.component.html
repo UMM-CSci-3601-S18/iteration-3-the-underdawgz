@@ -74,6 +74,17 @@
     <mat-card class="resources-card">
         <mat-card-title id="resources-title">Links</mat-card-title>
         <mat-card-subtitle>These links take you to helpful pages.</mat-card-subtitle>
+
+
+
+
+
+                <ul class="content-item" id="addNewResource"><button mat-raised-button (click)="openDialog()" class="resource-button"><mat-icon id="add-icon">add</mat-icon>Add a link</button></ul>
+                <br>
+
+
+
+
         <mat-card-content>
             <a href="https://depression.org.nz/get-better/self-help/" target="_blank">Depression Help</a>
             <br>
@@ -82,7 +93,30 @@
             <a href="http://www.apa.org/helpcenter/controlling-anger.aspx" target="_blank">Anger Management Help</a>
             <br>
             <a href="http://enlightenmentportal.com/development/self-esteem-building-activities/" target="_blank">Self Esteem Building Activities</a>
+
+            <ng-template #resourcesError>
+                <mat-error>
+                    There was a problem loading the linkss. Possibly the server is down or perhaps there are network
+                    issues.
+                </mat-error>
+                <mat-error>
+                    Please wait a bit and try again or start the server.
+                </mat-error>
+            </ng-template>
+            <mat-card> <mat-card-title class="your-resources-title">Your Added Links</mat-card-title>
+            <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
+            <div layout="row" layout-wrap>
+                <mat-card #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResource( resourceTitle,resourceLink)">
+                    <mat-panel-description id="titleContent"><Strong><i>{{resource.title}}</i></Strong></mat-panel-description><br>
+                    <mat-panel-description id="linkContent">{{resource.link}}</mat-panel-description>
+                    <br>
+
+
+                </mat-card>
+            </div>
+
             <mat-divider></mat-divider>
+            </mat-card>
         </mat-card-content>
     </mat-card>
     </div>

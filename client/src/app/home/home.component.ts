@@ -1,5 +1,9 @@
 import {EmotionResponseComponent} from "./emotion-response.component";
 import {EmotionResponseHappyComponent} from "./emotion-response-happy.component";
+import {EmotionResponseAnxiousComponent} from "./emotion-response-anxious.component";
+import {EmotionResponseMadComponent} from "./emotion-response-mad.component";
+import {EmotionResponseSadComponent} from "./emotion-response-sad.component";
+import {EmotionResponseScaredComponent} from "./emotion-response-scared.component";
 import {MatDialog} from '@angular/material';
 import {MatSnackBar} from '@angular/material';
 import {Component, Inject} from '@angular/core';
@@ -160,14 +164,36 @@ export class HomeComponent {
     //gives an encouraging response for a happy emotion of any intensity
     appropriateResponsePopUp(): void {
 
-        var doPopup: boolean = this.intenseEmotionResponse();
+        /*var doPopup: boolean = this.intenseEmotionResponse();
         if(doPopup){
             this.dialog.open(EmotionResponseComponent, {
                 width: '70vw',
                 height: '70%',
             });
-        } else if(this.selectedEmotion.toLowerCase() == 'happy') {
+        } else */
+
+        if(this.selectedEmotion.toLowerCase() == 'happy') {
             this.dialog.open(EmotionResponseHappyComponent, {
+                width: '70vw',
+                height: '70%',
+            });
+        } else if(this.selectedEmotion.toLowerCase() == 'anxious') {
+            this.dialog.open(EmotionResponseAnxiousComponent, {
+                width: '70vw',
+                height: '70%',
+            });
+        } else if(this.selectedEmotion.toLowerCase() == 'mad') {
+            this.dialog.open(EmotionResponseMadComponent, {
+                width: '70vw',
+                height: '70%',
+            });
+        } else if(this.selectedEmotion.toLowerCase() == 'sad') {
+            this.dialog.open(EmotionResponseSadComponent, {
+                width: '70vw',
+                height: '70%',
+            });
+        } else if(this.selectedEmotion.toLowerCase() == 'scared') {
+            this.dialog.open(EmotionResponseScaredComponent, {
                 width: '70vw',
                 height: '70%',
             });
@@ -177,12 +203,15 @@ export class HomeComponent {
     }
 
     //checks the emotional response and the intensity to see if a response is needed
+
+    //Will check later to see if we need this
+
     intenseEmotionResponse(): boolean {
 
         console.log("the selected emoji is: " + this.selectedEmotion);
         console.log("the emoji rating is:   " + this.emojiRating);
         if(this.selectedEmotion.toLowerCase() == 'sad' || this.selectedEmotion.toLowerCase() == 'mad' || this.selectedEmotion.toLowerCase() == 'scared' || this.selectedEmotion.toLowerCase() == 'anxious'){
-            if(this.emojiRating >= 3){
+            if(this.emojiRating >= 0){
                 return true;
             }
         }

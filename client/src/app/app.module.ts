@@ -8,10 +8,6 @@ import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 
-import {ResourcesComponent} from "./resources/resources.component";
-import {AddResourceComponent} from "./resources/add-resource.component";
-import {ResourcesSevices} from "./resources/resources.sevice";
-
 
 import {EmotionService} from "./home/home.service";
 
@@ -36,6 +32,10 @@ import {JournalsComponent} from "./Journal/journals.component";
 import {AddJournalComponent} from "./Journal/add-journal.component";
 import {JournalsService} from "./Journal/journals.service";
 
+import {ResourcesComponent} from "./resources/resources.component";
+import {AddResourceComponent} from "./resources/add-resource.component";
+import {ResourcesService} from "./resources/resources.service";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -47,13 +47,13 @@ import {JournalsService} from "./Journal/journals.service";
         AppComponent,
         HomeComponent,
         ResourcesComponent,
-       AddResourceComponent,
+        AddResourceComponent,
 
         GoalsComponent,
         AddGoalComponent,
 
         JournalsComponent,
-       AddJournalComponent,
+        AddJournalComponent,
 
         EditGoalComponent,
         SummaryListComponent,
@@ -67,6 +67,7 @@ import {JournalsService} from "./Journal/journals.service";
     providers: [
     GoalsService,
     JournalsService,
+    ResourcesService,
     EmotionService,
     SummaryListService,
     {provide: APP_BASE_HREF, useValue: '/'},
