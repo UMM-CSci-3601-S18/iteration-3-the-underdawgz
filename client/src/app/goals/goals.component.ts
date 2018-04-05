@@ -36,7 +36,7 @@ export class GoalsComponent implements OnInit {
     }
 
     openDialog(): void {
-        const newGoal: Goal = {_id: '', goal:'', category:'', name:''};
+        const newGoal: Goal = {_id: '', status: boolean, goal:'', category:'', name:''};
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '500px',
             data: { goal : newGoal }
@@ -57,7 +57,7 @@ export class GoalsComponent implements OnInit {
     }
 
     openDialogEdit(_id: string, goal: string, category: string, name: string): void {
-        const newGoal: Goal = {_id: _id, goal: name, category: category, name: goal};
+        const newGoal: Goal = {_id: _id, status: boolean, goal: name, category: category, name: goal};
         const dialogRef = this.dialog.open(EditGoalComponent, {
             width: '500px',
             data: { goal : newGoal }
@@ -147,9 +147,13 @@ export class GoalsComponent implements OnInit {
         );
     }
 
-
     ngOnInit(): void {
         this.refreshGoals();
         this.loadService();
+    }
+
+    parseStatus(thing:Boolean) {
+        if(thing == true) return "Complete"
+        else return "Incomplete"
     }
 }
