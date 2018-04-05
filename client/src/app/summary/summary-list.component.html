@@ -10,8 +10,8 @@
                 <h3><i>Filtering:</i></h3>
 
             <div id="filterContents">
+                <!--
             <form>
-                <!--# The Angular feature-->
                 <label> Mood:</label>
                 <select name="dropdown" id="summaryMood" #input placeholder="Filter by Mood" (input)="summaryMood = $event.target.value">
                     <option id ="dropdownAllMoods" selected value="All">All Moods</option>
@@ -36,6 +36,7 @@
                         <option id="dropdown5" value="5">5</option>
                     </select>
                 </form>
+                -->
 
                 <mat-form-field class="start">
                     <input
@@ -48,7 +49,6 @@
                     <mat-datepicker touchUi="true" #start></mat-datepicker>
                 </mat-form-field> &nbsp;
 
-
                 <mat-form-field class="end">
                     <input
                         id = "endDate"
@@ -59,6 +59,7 @@
                     <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
                     <mat-datepicker touchUi="true" #end></mat-datepicker>
                 </mat-form-field>
+
             </div>
             </div>
         </mat-card>
@@ -66,24 +67,29 @@
 
             <div id="tabs">
             <mat-tab-group #myTabGroup >
-                <mat-tab label="Graph View">
+                <mat-tab label="Basic Review">
+                    <!--
                     <div id="graphFilter">
                         <form>
-                            <!--# The Angular feature-->
                             <label> Represent entries by day or hour?</label>
                             <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
                                 <option id ="Day" selected value="Day">Day</option>
-                        <option id = "Hour" value="Hour">Hour</option>
+                                <option id = "Hour" value="Hour">Hour</option>
                             </select>
                             <br>
                         </form>
                         <button mat-raised-button id="filterButton" (click)="this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate); updateChart()">Update Graph</button>
                         <br>
                     </div>
+                    -->
                     <mat-card> <mat-card-title class="your-summarys-title">Your Emotions</mat-card-title>
                         <mat-card-subtitle class="your-summarys-title">There are {{totalNumberMoods()}} entries represented</mat-card-subtitle>
                     <canvas id="myChart" height="auto"></canvas>
                     </mat-card>
+
+                </mat-tab>
+                <mat-tab label="Intensity Review">
+
 
                 </mat-tab>
 

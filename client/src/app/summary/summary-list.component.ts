@@ -100,22 +100,39 @@ export class SummaryListComponent implements OnInit {
         return this.filteredSummarys;
     }
 
-    filterGraph(weekday): number {
+    filterGraphWeekly(weekday, filterMood): number {
         console.log(this.filteredSummarys.length);
         var filterData = this.filteredSummarys;
 
-        if(this.inputType == "Day") {
-            filterData = filterData.filter(summary => {
-                this.getDate = new Date(summary.date);
-                return this.getDate.getDay() == weekday;
-            });
-        }
-        else {
-            filterData = filterData.filter(summary => {
-                this.getDate = new Date(summary.date);
-                return this.getDate.getHours() == weekday;
-            });
-        }
+        // Filter by weekday
+        filterData = filterData.filter(summary => {
+            this.getDate = new Date(summary.date);
+            return this.getDate.getDay() == weekday;
+        });
+
+        // filter by mood
+        filterMood = filterMood.toLocaleLowerCase();
+        filterData = filterData.filter(summary => {
+            return !filterMood || summary.mood.toLowerCase().indexOf(filterMood) !== -1;
+        });
+
+        return filterData.length;
+
+    }
+
+    filterGraphHourly(hour, filterMood): number {
+        console.log(this.filteredSummarys.length);
+        var filterData = this.filteredSummarys;
+
+        filterData = filterData.filter(summary => {
+            this.getDate = new Date(summary.date);
+            return this.getDate.getHours() == weekday;
+        });
+
+        filterMood = filterMood.toLocaleLowerCase();
+        filterData = filterData.filter(summary => {
+            return !filterMood || summary.mood.toLowerCase().indexOf(filterMood) !== -1;
+        });
 
         return filterData.length;
     }
@@ -125,7 +142,7 @@ export class SummaryListComponent implements OnInit {
      *
      */
 
-    updateChart(): void{
+    /*updateChart(): void{
 
         this.myChart.destroy();
 
@@ -176,7 +193,8 @@ export class SummaryListComponent implements OnInit {
                     this.filterGraph('23'),
                     this.filterGraph('24')
                 ],
-                "fill": true,
+                hidden: false,
+                "fill": false,
                 "backgroundColor": "blue",
                 "borderColor": "black",
                 "lineTension": 0.1
@@ -199,9 +217,7 @@ export class SummaryListComponent implements OnInit {
                     this.filterGraph('6'),
 
                 ],
-
-
-                "fill": true,
+                "fill": false,
                 "backgroundColor": "blue",
                 "borderColor": "black",
                 "lineTension": 0.1
@@ -212,7 +228,7 @@ export class SummaryListComponent implements OnInit {
 
 
         this.myChart = new Chart(this.ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
 
                 labels: type,
@@ -234,7 +250,7 @@ export class SummaryListComponent implements OnInit {
 
 
 
-    }
+    }*/
 
     buildChart(): void {
 
@@ -244,35 +260,119 @@ export class SummaryListComponent implements OnInit {
         var summaryDays;
 
         let days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-
-        summaryDays = {
-            "label": "Total Number of Entries",
-            "data": [
-                this.filterGraph('0'),
-                this.filterGraph('1'),
-                this.filterGraph('2'),
-                this.filterGraph('3'),
-                this.filterGraph('4'),
-                this.filterGraph('5'),
-                this.filterGraph('6'),
-
+        let happy_weekly_totals = {"label":"Happy",
+            "data":[
+                this.filterGraphWeekly('0', 'happy'),
+                this.filterGraphWeekly('1', 'happy'),
+                this.filterGraphWeekly('2', 'happy'),
+                this.filterGraphWeekly('3', 'happy'),
+                this.filterGraphWeekly('4', 'happy'),
+                this.filterGraphWeekly('5', 'happy'),
+                this.filterGraphWeekly('6', 'happy')
             ],
-            "fill": true,
-            "backgroundColor": "blue",
-            "borderColor": "black",
-            "lineTension": 0.3
-        };
+            hidden: false,
+            "fill":false,
+            "borderColor":"rgb(150, 0, 100)",
+            "lineTension":0.1};
+
+        let sad_weekly_totals = {"label":"Sad",
+            "data":[
+                this.filterGraphWeekly('0', 'sad'),
+                this.filterGraphWeekly('1', 'sad'),
+                this.filterGraphWeekly('2', 'sad'),
+                this.filterGraphWeekly('3', 'sad'),
+                this.filterGraphWeekly('4', 'sad'),
+                this.filterGraphWeekly('5', 'sad'),
+                this.filterGraphWeekly('6', 'sad')
+            ],
+            hidden: false,
+            "fill":false,
+            "borderColor":"rgb(150, 0, 100)",
+            "lineTension":0.1};
+
+        let meh_weekly_totals = {"label":"Meh",
+            "data":[
+                this.filterGraphWeekly('0', 'meh'),
+                this.filterGraphWeekly('1', 'meh'),
+                this.filterGraphWeekly('2', 'meh'),
+                this.filterGraphWeekly('3', 'meh'),
+                this.filterGraphWeekly('4', 'meh'),
+                this.filterGraphWeekly('5', 'meh'),
+                this.filterGraphWeekly('6', 'meh')
+            ],
+            hidden: false,
+            "fill":false,
+            "borderColor":"rgb(150, 0, 100)",
+            "lineTension":0.1};
+
+        let mad_weekly_totals = {"label":"Mad",
+            "data":[
+                this.filterGraphWeekly('0', 'mad'),
+                this.filterGraphWeekly('1', 'mad'),
+                this.filterGraphWeekly('2', 'mad'),
+                this.filterGraphWeekly('3', 'mad'),
+                this.filterGraphWeekly('4', 'mad'),
+                this.filterGraphWeekly('5', 'mad'),
+                this.filterGraphWeekly('6', 'mad')
+            ],
+            hidden: false,
+            "fill":false,
+            "borderColor":"rgb(150, 0, 100)",
+            "lineTension":0.1};
+
+        let scared_weekly_totals = {"label":"Scared",
+            "data":[
+                this.filterGraphWeekly('0', 'scared'),
+                this.filterGraphWeekly('1', 'scared'),
+                this.filterGraphWeekly('2', 'scared'),
+                this.filterGraphWeekly('3', 'scared'),
+                this.filterGraphWeekly('4', 'scared'),
+                this.filterGraphWeekly('5', 'scared'),
+                this.filterGraphWeekly('6', 'scared')
+            ],
+            hidden: false,
+            "fill":false,
+            "borderColor":"rgb(150, 0, 100)",
+            "lineTension":0.1};
+
+        let anxious_weekly_totals = {"label":"Anxious",
+            "data":[
+                this.filterGraphWeekly('0', 'anxious'),
+                this.filterGraphWeekly('1', 'anxious'),
+                this.filterGraphWeekly('2', 'anxious'),
+                this.filterGraphWeekly('3', 'anxious'),
+                this.filterGraphWeekly('4', 'anxious'),
+                this.filterGraphWeekly('5', 'anxious'),
+                this.filterGraphWeekly('6', 'anxious')
+            ],
+            hidden: false,
+            "fill":false,
+            "borderColor":"rgb(150, 0, 100)",
+            "lineTension":0.1};
 
         this.myChart = new Chart(this.ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: days,
-                datasets: [summaryDays]
+                datasets: [
+                    happy_weekly_totals,
+                    sad_weekly_totals,
+                    meh_weekly_totals,
+                    scared_weekly_totals,
+                    mad_weekly_totals,
+                    anxious_weekly_totals,
+                    ]
             },
             options: {
                 responsive: true,
                 maintainAspectRation: false,
                 scales: {
+                    xAxes: [{
+                        type: 'time',
+                        position: 'bottom',
+                        time: {
+                            unit: "day",
+                        },
+                    }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
