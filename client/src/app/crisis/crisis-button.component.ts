@@ -6,6 +6,7 @@ import {crisis} from "./crisis";
 import {Observable} from "rxjs/Observable";
 
 
+
 @Component({
     selector: 'app-crisis-button.component',
     templateUrl: 'crisis-button.component.html',

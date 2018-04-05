@@ -36,6 +36,7 @@ import {JournalsService} from "./Journal/journals.service";
 import {CrisisComponent} from "./crisis/crisis.component";
 import {CrisisService} from "./crisis/crisis.service";
 import {AddCrisisComponent} from "./crisis/add-crisis.component";
+import {CrisisButtonComponent} from "./crisis/crisis-button.component";
 
 @NgModule({
     imports: [
@@ -62,6 +63,7 @@ import {AddCrisisComponent} from "./crisis/add-crisis.component";
 
         CrisisComponent,
         AddCrisisComponent,
+        CrisisButtonComponent,
 
         EmotionResponseHappyComponent,
         EmotionResponseSadComponent,
@@ -85,12 +87,13 @@ import {AddCrisisComponent} from "./crisis/add-crisis.component";
         EmotionResponseComponent,
         EmotionResponseHappyComponent,
         AddJournalComponent,
-        AddCrisisComponent
+        AddCrisisComponent,
         EmotionResponseSadComponent,
         EmotionResponseMadComponent,
         EmotionResponseScaredComponent,
         EmotionResponseAnxiousComponent,
-        AddJournalComponent
+        AddJournalComponent,
+        CrisisButtonComponent
     ],
     bootstrap: [AppComponent]
 })
