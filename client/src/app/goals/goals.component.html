@@ -18,19 +18,27 @@
                     <mat-tab label="Incomplete">
                         <br>
                         <div layout="row" layout-wrap>
-                            <mat-card #elem class="goals" [id]="goal.name" *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName)">
+                            <mat-card #elem class="goals" [id]="goal.name" *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus)">
 
                                 <mat-card-content class="content"><h2><i>{{goal.name}}</i></h2>
                                     <i>Category:</i> {{goal.category}}<br>
                                     <i>Purpose of this goal:</i> {{goal.goal}}<br>
-                                    <i>Status:</i> {{parseStatus(goal.status)}}
+                                    <p>Status:
+                                        <b *ngIf="goal.status" id="goal-complete">Complete</b>
+                                        <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
+                                    </p>
                                 </mat-card-content>
 
                                 <div id="editButton" class="editGoal">
                                     <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.name, goal.category, goal.goal)">
                                     <mat-icon id="edit-icon">edit</mat-icon>
                                 </button>
+                                    <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"
+                                            (click)="goalSatisfied(goal._id['$oid'], goal.goal, goal.category, goal.name);">
+                                        <mat-icon>done</mat-icon>
+                                    </button>
                                 </div>
+
                             </mat-card>
                         </div>
                     </mat-tab>

@@ -80,7 +80,7 @@ export class GoalsService {
         return this.http.post<{'$oid': string}>(this.goalUrl + '/new', newGoal, httpOptions);
     }
 
-    editGoal(id: string): Observable<{'$oid': string}> {
+    editGoal(editedGoal: Goal): Observable<{'$oid': string}> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ export class GoalsService {
         };
 
         // Send post request to add a new goal with the user data as the body with specified headers.
-        console.log(id);
-        return this.http.post<{'$oid': string}>(this.goalUrl + '/edit', id, httpOptions);
+        console.log(editedGoal);
+        return this.http.post<{'$oid': string}>(this.goalUrl + '/edit', editedGoal, httpOptions);
     }
 }

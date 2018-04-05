@@ -109,7 +109,6 @@ public class GoalRequestHandler {
         }
     }
 
-
     public String editGoal(Request req, Response res)
     {
 	System.out.println("it went into GoalRequestHandler::editGoal");
@@ -142,6 +141,44 @@ public class GoalRequestHandler {
             }
         }
         catch (RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
+
+    public String completeGoal(Request req, Response res)
+    {
+
+        res.type("application/json");
+        Object o = JSON.parse(req.body());
+        try {
+            // if the object that is the JSON representation of the request body's class is the class BasicDBObject
+            // then try to add the item with itemController's completeGoal method
+            if(o.getClass().equals(BasicDBObject.class)) {
+                try {
+                    BasicDBObject dbO = (BasicDBObject) o;
+
+                    String id = dbO.getString("_id");
+                    String goal = dbO.getString("goal");
+                    String category = dbO.getString("category");
+                    String name = dbO.getString("name");
+                    Boolean status = dbO.getBoolean("status");
+
+                    System.out.println("Completing goal [goal: " + goal + ", category: " + category + ", name: " + name + ", status: " + status + ']');
+                    return goalController.completeGoal(id, goal, category, name, status).toString();
+                } catch (NullPointerException e) {
+                    System.err.println("A value was malformed or omitted, new item request failed.");
+                    return null;
+                }
+            }
+            else
+            {
+                System.err.println("Expected BasicDBObject, received " + o.getClass());
+                return null;
+            }
+        }
+        catch(RuntimeException ree)
         {
             ree.printStackTrace();
             return null;
