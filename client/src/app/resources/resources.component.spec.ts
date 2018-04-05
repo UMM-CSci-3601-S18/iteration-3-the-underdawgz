@@ -30,6 +30,6 @@ describe('Resources', () => {
 
     it('displays a greeting', () => {
         fixture.detectChanges();
-        expect(el.textContent).toContain(component.title);
+        expect(el.textContent).toContain(component.resourceLink);
     });
 });
