@@ -13,7 +13,7 @@ import 'rxjs/add/operator/do';
 
 describe('Crisis list', () => {
 
-    let crisisList: CrisisComponent;
+    let crisisNumberList: CrisisComponent;
     let fixture: ComponentFixture<CrisisComponent>;
 
     let crisisListServiceStub: {
@@ -59,25 +59,25 @@ describe('Crisis list', () => {
     beforeEach(async(() => {
         TestBed.compileComponents().then(() => {
             fixture = TestBed.createComponent(CrisisComponent);
-            crisisList = fixture.componentInstance;
+            crisisNumberList = fixture.componentInstance;
             fixture.detectChanges();
         });
     }));
 
     it('contains all the crisis', () => {
-        expect(crisisList.crisis.length).toBe(3);
+        expect(crisisNumberList.crisis.length).toBe(3);
     });
 
     it('contains a crisis with name \'Robert Ward\'', () => {
-        expect(crisisList.crisis.some((crisis: crisis) => crisis.name === 'Robert Ward')).toBe(true);
+        expect(crisisNumberList.crisis.some((crisisNumber: crisis) => crisisNumber.name === 'Robert Ward')).toBe(true);
     });
 
     it('doesn\'t contain a user named \'Santa\'', () => {
-        expect(crisisList.crisis.some((crisis: crisis) => crisis.name === 'Santa')).toBe(false);
+        expect(crisisNumberList.crisis.some((crisisNumber: crisis) => crisisNumber.name === 'Santa')).toBe(false);
     });
 
     it('has two crisis with email', () => {
-        expect(crisisList.crisis.filter((crisis: crisis) => crisis.email === 'Ladonna@ Benson.com').length).toBe(1);
+        expect(crisisNumberList.crisis.filter((crisisNumber: crisis) => crisisNumber.email === 'Ladonna@ Benson.com').length).toBe(1);
     });
 
 });

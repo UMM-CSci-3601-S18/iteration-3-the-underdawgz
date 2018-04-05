@@ -54,6 +54,9 @@ li a:hover {
 .journal.active{
     background-color: #1E392A;
 }
+.crisis.active{
+    background-color: red;
+}
 
 
 

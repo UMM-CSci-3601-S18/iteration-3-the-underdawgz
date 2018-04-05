@@ -39,7 +39,7 @@ export class CrisisComponent implements OnInit{
                 },
                 err => {
                     // This should probably be turned into some sort of meaningful response.
-                    console.log('There was an error adding the crisis.');
+                    console.log('There was an error adding the crisisNumber.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
         });
