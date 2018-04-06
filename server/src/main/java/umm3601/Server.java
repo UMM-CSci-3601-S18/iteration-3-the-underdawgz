@@ -22,6 +22,9 @@ import java.io.IOException;
 import umm3601.database.SummaryController;
 import umm3601.database.SummaryRequestHandler;
 
+import umm3601.database.CrisisController;
+import umm3601.database.CrisisRequestHandler;
+
 
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
@@ -50,6 +53,10 @@ public class Server {
 
         JournalController journalController = new JournalController(database);
         JournalRequestHandler journalRequestHandler = new JournalRequestHandler(journalController);
+
+        CrisisController crisisController = new CrisisController(database);
+        CrisisRequestHandler crisisRequestHandler = new CrisisRequestHandler(crisisController);
+
 
 
         //Configure Spark
@@ -111,6 +118,10 @@ public class Server {
         get("api/journals", journalRequestHandler::getJournals);
         get("api/journals/:id", journalRequestHandler::getJournalJSON);
         post("api/journals/new", journalRequestHandler::addNewJournal);
+
+        //Crisis for appropriate response
+        get("api/crisis", crisisRequestHandler::getCrisis);
+        post("api/crisis/new", crisisRequestHandler:addCrisis)
 
 
         // An example of throwing an unhandled exception so you can see how the
