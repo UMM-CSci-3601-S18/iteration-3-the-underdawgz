@@ -14,39 +14,41 @@
         <mat-card id="mainCard"><mat-card-title id="your-goals" class="your-goals-title">Your Goals</mat-card-title>
             <mat-card-subtitle class="your-goals-title">All of your goals are displayed here.</mat-card-subtitle>
             <div id="goals tabs">
-                <mat-tab-group> #myGoalsGroup
-                    <mat-tab label="Incomplete">
+                <!--<mat-tab-group> #myGoalsGroup
+                    <mat-tab label="Incomplete">-->
                         <br>
                         <div layout="row" layout-wrap>
-                            <mat-card #elem class="goals" [id]="goal.name" *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus)">
+                            <mat-card class="goals"
+                                      *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus)"
+                                      #elem [id]="goal._id['$oid']">
 
                                 <mat-card-content class="content"><h2><i>{{goal.name}}</i></h2>
                                     <i>Category:</i> {{goal.category}}<br>
                                     <i>Purpose of this goal:</i> {{goal.goal}}<br>
-                                    <p>Status:
+                                    <i>Status:
                                         <b *ngIf="goal.status" id="goal-complete">Complete</b>
                                         <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
-                                    </p>
+                                    </i>
                                 </mat-card-content>
 
                                 <div id="editButton" class="editGoal">
-                                    <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.name, goal.category, goal.goal)">
+                                    <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.goal, goal.category, goal.name)">
                                     <mat-icon id="edit-icon">edit</mat-icon>
-                                </button>
+                                    </button>
                                     <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"
-                                            (click)="goalSatisfied(goal._id['$oid'], goal.goal, goal.category, goal.name);">
+                                            (click)="goalSatisfied(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status);">
                                         <mat-icon>done</mat-icon>
                                     </button>
                                 </div>
 
                             </mat-card>
                         </div>
-                    </mat-tab>
+                    <!--</mat-tab>
 
                     <mat-tab label="Complete">
 
                     </mat-tab>
-                </mat-tab-group>
+                </mat-tab-group>-->
             </div>
 
 

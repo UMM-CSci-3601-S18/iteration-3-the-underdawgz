@@ -2,6 +2,7 @@ package umm3601.database;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
+import jdk.net.SocketFlow;
 import spark.Request;
 import spark.Response;
 
@@ -124,7 +125,6 @@ public class GoalRequestHandler {
                     String name = dbO.getString("goal");
                     String category = dbO.getString("category");
                     String goal = dbO.getString("name");
-
                     System.err.println("Editing goal [_id=" + id + ", goal=" + goal + ", category=" + category + " name=" + name + ']');
                     return goalController.editGoal(id, goal, category, name);
                 }

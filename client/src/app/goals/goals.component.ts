@@ -67,7 +67,7 @@ export class GoalsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.goalService.editGoal(result).subscribe(
                 editGoalResult => {
-                    //this.highlightedID = editGoalResult;
+                    this.highlightedID = editGoalResult;
                     this.refreshGoals();
                 },
                 err => {
@@ -78,8 +78,8 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-    goalSatisfied(_id: string, theGoal: string, theCategory: string, theName) {
-        const updatedGoal: Goal = {_id: _id, name: theName, category: theCategory, goal: theGoal,  status: true};
+    goalSatisfied(_id: string, theGoal: string, theCategory: string, theName: string) {
+        const updatedGoal: Goal = {_id: _id, goal: theGoal, category: theCategory, name: theName,  status: true};
         this.goalService.editGoal(updatedGoal).subscribe(
             editGoalResult => {
                 this.highlightedID = editGoalResult;

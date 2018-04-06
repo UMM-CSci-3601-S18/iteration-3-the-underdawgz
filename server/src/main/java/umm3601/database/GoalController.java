@@ -100,8 +100,8 @@ public class GoalController {
     /**
      * Helper method which appends received user information to the to-be added document
      *
-     * @param name
      * @param goal
+     * @param category
      * @return boolean after successfully or unsuccessfully adding a user
      */
     // As of now this only adds the goal, but you can separate multiple arguments
@@ -119,8 +119,8 @@ public class GoalController {
         try {
             goalCollection.insertOne(newGoal);
             ObjectId id = newGoal.getObjectId("_id");
-            System.err.println("Successfully added new goal [_id=" + id + ", goal=" + goal + ", category=" + category + " name=" + name + "status=" +
-                status + ']');
+
+            System.err.println("Successfully added new goal [_id=" + id + ", goal=" + goal + ", category=" + category + " name=" + name + "status=" + status + ']');
             // return JSON.serialize(newGoal);
             return JSON.serialize(id);
         } catch(MongoException me) {
