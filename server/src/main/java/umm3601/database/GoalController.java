@@ -154,9 +154,9 @@ public class GoalController {
     public String editGoal(String id, String goal, String category, String name) {
 
         Document newGoal = new Document();
-        newGoal.append("goal", name);
+        newGoal.append("name", name);
         newGoal.append("category", category);
-        newGoal.append("name", goal);
+        newGoal.append("goal", goal);
 
         Document setQuery = new Document();
         setQuery.append("$set", newGoal);

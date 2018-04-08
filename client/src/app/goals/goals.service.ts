@@ -91,4 +91,17 @@ export class GoalsService {
         console.log(editedGoal);
         return this.http.post<{'$oid': string}>(this.goalUrl + '/edit', editedGoal, httpOptions);
     }
+
+    // Send post request to complete a goal
+    completeGoal(completedGoal: Goal): Observable<{'$oid': string}> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+
+        // Send post request to add a new goal with the user data as the body with specified headers.
+        console.log(completedGoal);
+        return this.http.post<{'$oid': string}>(this.goalUrl + '/complete', completedGoal, httpOptions);
+    }
 }

@@ -32,7 +32,7 @@
                                 </mat-card-content>
 
                                 <div id="editButton" class="editGoal">
-                                    <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.goal, goal.category, goal.name)">
+                                    <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status)">
                                     <mat-icon id="edit-icon">edit</mat-icon>
                                     </button>
                                     <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"

@@ -149,7 +149,7 @@ public class GoalRequestHandler {
 
     public String completeGoal(Request req, Response res)
     {
-
+        System.out.println("it went into GoalRequestHandler::completeGoal");
         res.type("application/json");
         Object o = JSON.parse(req.body());
         try {
