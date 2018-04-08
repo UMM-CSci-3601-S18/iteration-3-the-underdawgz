@@ -31,7 +31,7 @@ public class CrisisController {
     public String get(String id) {
 
         FindIterable<Document> jsonResources
-            = resourcesCollection
+            = crisisCollection
             .find(eq("_id", new ObjectId(id)));
 
         Iterator<Document> iterator = jsonResources.iterator();
@@ -56,7 +56,7 @@ public class CrisisController {
             filterDoc = filterDoc.append("name", targetName);
         }
 
-        FindIterable<Document> matchingResources = resourcesCollection.find(filterDoc);
+        FindIterable<Document> matchingResources = crisisCollection.find(filterDoc);
 
 
         return JSON.serialize(matchingResources);
@@ -74,7 +74,7 @@ public class CrisisController {
 
 
         try {
-            resourcesCollection.insertOne(newResources);
+            crisisCollection.insertOne(newResources);
 
             ObjectId Id = newResources.getObjectId("_id");
             System.err.println("Successfully added new resource [_id=" + id + ", name=" + name + ", email=" + email + " phone=" + phone + ']');
