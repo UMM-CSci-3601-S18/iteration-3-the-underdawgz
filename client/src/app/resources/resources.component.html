@@ -86,27 +86,41 @@
             <br>
             <a href="http://enlightenmentportal.com/development/self-esteem-building-activities/" target="_blank">Self Esteem Building Activities</a>
 
-            <ng-template #resourcesError>
-                <mat-error>
-                    There was a problem loading the linkss. Possibly the server is down or perhaps there are network
-                    issues.
-                </mat-error>
-                <mat-error>
-                    Please wait a bit and try again or start the server.
-                </mat-error>
-            </ng-template>
-            <mat-card> <mat-card-title class="your-resources-title">Your Added Links</mat-card-title>
-            <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
-            <div layout="row" layout-wrap>
-                <mat-card #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)">
-                    <mat-panel-description id="titleContent"><Strong><i>{{resource.title}}</i></Strong></mat-panel-description><br>
-                    <mat-panel-description id="linkContent">{{resource.link}}</mat-panel-description>
 
-                </mat-card>
+
+
+            <mat-accordion> <mat-grid-tile-header class="your-resources-title">Your Added Links</mat-grid-tile-header>
+            <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
+            <div layout="link-list" layout-wrap>
+                <mat-accordion #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)"> <br>
+                   <!-- <mat-panel-title id="titleContent"><Strong>{{resource.title}}</Strong> </mat-panel-title> <br>
+                    <mat-panel-description id="linkContent">  {{resource.link}}   </mat-panel-description>-->
+                 <br>   <a href="{{resource.link}}" target="_blank">{{resource.title}}</a>
+
+
+
+
+
+                </mat-accordion>
+
+
+
+
+
+                <ng-template #resourcesError>
+                    <mat-error>
+                        There was a problem loading the links. Possibly the server is down or perhaps there are network
+                        issues.
+                    </mat-error>
+                    <mat-error>
+                        Please wait a bit and try again or start the server.
+                    </mat-error>
+                </ng-template>
+
             </div>
 
             <mat-divider></mat-divider>
-            </mat-card>
+            </mat-accordion>
         </mat-card-content>
     </mat-card>
     </div>
