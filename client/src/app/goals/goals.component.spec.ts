@@ -1,3 +1,4 @@
+/*
 import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {Goal} from './goal';
 import {GoalsComponent} from './goals.component';
@@ -220,7 +221,7 @@ describe('Adding a goal', () => {
 // Editing a goal test is commented out as it currently doesn't pass
 // Need to fix this
 
-/*describe('Editing a goal', () => {
+/!*describe('Editing a goal', () => {
     let goal: GoalsComponent;
     let fixture: ComponentFixture<GoalsComponent>;
 
@@ -290,4 +291,5 @@ describe('Adding a goal', () => {
         goal.openDialogEdit(goalToEdit._id, goalToEdit.goal, goalToEdit.category, goalToEdit.name);
         expect(calledGoal).toEqual(editedGoal);
     });
-});*/
+});*!/
+*/

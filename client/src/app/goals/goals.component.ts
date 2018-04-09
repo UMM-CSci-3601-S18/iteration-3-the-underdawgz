@@ -22,6 +22,7 @@ export class GoalsComponent implements OnInit {
     public goalGoal: string;
     public goalCategory: string;
     public goalName: string;
+    public goalStatus: string;
 
     // The ID of the goal
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -36,7 +37,7 @@ export class GoalsComponent implements OnInit {
     }
 
     openDialog(): void {
-        const newGoal: Goal = {_id: '', goal:'', category:'', name:''};
+        const newGoal: Goal = {_id: '', goal:'', category:'', name:'', status: false};
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '500px',
             data: { goal : newGoal }
@@ -57,7 +58,7 @@ export class GoalsComponent implements OnInit {
     }
 
     openDialogEdit(_id: string, goal: string, category: string, name: string): void {
-        const newGoal: Goal = {_id: _id, goal: name, category: category, name: goal};
+        const newGoal: Goal = {_id: _id, goal: goal, category: category, name: name,status: false};
         const dialogRef = this.dialog.open(EditGoalComponent, {
             width: '500px',
             data: { goal : newGoal }
@@ -66,7 +67,7 @@ export class GoalsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.goalService.editGoal(result).subscribe(
                 editGoalResult => {
-                    //this.highlightedID = editGoalResult;
+                    this.highlightedID = editGoalResult;
                     this.refreshGoals();
                 },
                 err => {
@@ -77,7 +78,26 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-    public filterGoals(searchGoal: string, searchCategory: string, searchName: string): Goal[] {
+    goalSatisfied(_id: string, theGoal: string, theCategory: string, theName: string) {
+        const updatedGoal: Goal = {_id: _id, goal: theGoal, category: theCategory, name: theName,  status: true};
+        this.goalService.completeGoal(updatedGoal).subscribe(
+            completeGoalResult => {
+                this.highlightedID = completeGoalResult;
+                this.refreshGoals();
+            },
+            err => {
+                console.log('There was an error editing the goal.');
+                console.log('The error was ' + JSON.stringify(err));
+            });
+    }
+
+    /*openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 2000,
+        });
+    }*/
+
+    public filterGoals(searchGoal: string, searchCategory: string, searchName: string, searchStatus: string): Goal[] {
 
         this.filteredGoals = this.goals;
 
@@ -108,6 +128,15 @@ export class GoalsComponent implements OnInit {
             });
         }
 
+        // Filter by status
+        if (searchStatus != null) {
+            searchStatus = searchStatus.toLocaleLowerCase();
+
+            this.filteredGoals = this.filteredGoals.filter(goal => {
+                return !searchStatus || goal.name.toLowerCase().indexOf(searchStatus) !== -1;
+            });
+        }
+
         return this.filteredGoals;
     }
 
@@ -126,7 +155,7 @@ export class GoalsComponent implements OnInit {
         goalObservable.subscribe(
             goals => {
                 this.goals = goals;
-                this.filterGoals(this.goalGoal, this.goalCategory, this.goalName);
+                this.filterGoals(this.goalGoal, this.goalCategory, this.goalName, this.goalStatus);
             },
             err => {
                 console.log(err);
@@ -146,7 +175,6 @@ export class GoalsComponent implements OnInit {
             }
         );
     }
-
 
     ngOnInit(): void {
         this.refreshGoals();

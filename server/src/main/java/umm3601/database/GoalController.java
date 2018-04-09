@@ -86,6 +86,11 @@ public class GoalController {
             filterDoc = filterDoc.append("name", contentRegQuery);
         }
 
+        if (queryParams.containsKey("status")) {
+            boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
+            filterDoc = filterDoc.append("status", targetStatus);
+        }
+
         // FindIterable comes from mongo, Document comes from Gson
         FindIterable<Document> matchingGoals = goalCollection.find(filterDoc);
 
@@ -95,27 +100,51 @@ public class GoalController {
     /**
      * Helper method which appends received user information to the to-be added document
      *
-     * @param name
      * @param goal
+     * @param category
      * @return boolean after successfully or unsuccessfully adding a user
      */
     // As of now this only adds the goal, but you can separate multiple arguments
     // by commas as we add them.
-    public String addNewGoal(String goal, String category, String name) {
+    public String addNewGoal(String goal, String category, String name, Boolean status) {
 
         // makes the search Document key-pairs
         Document newGoal = new Document();
         newGoal.append("goal", name);
         newGoal.append("category", category);
         newGoal.append("name", goal);
+        newGoal.append("status", status);
         // Append new goals here
 
         try {
             goalCollection.insertOne(newGoal);
             ObjectId id = newGoal.getObjectId("_id");
-            System.err.println("Successfully added new goal [_id=" + id + ", goal=" + goal + ", category=" + category + " name=" + name + ']');
+
+            System.err.println("Successfully added new goal [_id=" + id + ", goal=" + goal + ", category=" + category + " name=" + name + "status=" + status + ']');
             // return JSON.serialize(newGoal);
             return JSON.serialize(id);
+        } catch(MongoException me) {
+            me.printStackTrace();
+            return null;
+        }
+    }
+
+    public String completeGoal(String id, String goal, String category, String name, Boolean status){
+        Document newGoal = new Document();
+        newGoal.append("goal", goal);
+        newGoal.append("category", category);
+        newGoal.append("name", name);
+        newGoal.append("status", true);
+        Document setQuery = new Document();
+        setQuery.append("$set", newGoal);
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+        System.out.println("Goal id: " + id);
+        try {
+            goalCollection.updateOne(searchQuery, setQuery);
+            ObjectId theID = searchQuery.getObjectId("_id");
+            System.out.println("Successfully completed goal [id: " + theID + ", goal: " + goal +
+                ", category: " + category + ", name: " + name + ", status: " + status + ']');
+            return JSON.serialize(theID);
         } catch(MongoException me) {
             me.printStackTrace();
             return null;
@@ -125,9 +154,9 @@ public class GoalController {
     public String editGoal(String id, String goal, String category, String name) {
 
         Document newGoal = new Document();
-        newGoal.append("goal", name);
+        newGoal.append("name", name);
         newGoal.append("category", category);
-        newGoal.append("name", goal);
+        newGoal.append("goal", goal);
 
         Document setQuery = new Document();
         setQuery.append("$set", newGoal);
