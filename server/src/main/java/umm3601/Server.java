@@ -105,8 +105,10 @@ public class Server {
         //Resources for appropriate response
         get("api/resources", resourceRequestHandler::getResources);
         get("api/resources/:id", resourceRequestHandler::getResourceJSON);
-        post("api/resources/new", resourceRequestHandler::addNewResource);
-     //   delete("api/resources/delete", goalRequestHandler::deleteResources);
+        post("api/resources/:id", resourceRequestHandler::addNewResource);
+       // post("api/resources/new", resourceRequestHandler::addNewResource);
+
+        delete("api/resources/delete", resourceRequestHandler::deleteResource);
 
 
 

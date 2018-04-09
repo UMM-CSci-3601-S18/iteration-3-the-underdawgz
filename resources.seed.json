@@ -3,22 +3,49 @@
     "title": "University of Minnesota Morris",
     "link": "https://www4.morris.umn.edu/"
 
-}, {
+},
+    {
     "_id": {"$oid": "6ab41f14aafb083c32f58246"},
     "title": "Less Anger",
     "link": "https://www.stylist.co.uk/life/how-to-be-less-angry-the-seven-proven-ways-to-control-and-defuse-rage-temper-tips-anger-management/58705"
 
-}, {
+},
+    {
+        "_id": {"$oid": "7ab41f14aafb083c32f58246"},
+        "title": "Relaxing Music",
+        "link": "https://www.youtube.com/watch?v=1ZYbU82GVz4"
+
+    },
+
+    {
+        "_id": {"$oid": "8ab41f14aafb083c32f58246"},
+        "title": "How to spend free time",
+        "link": "https://www.inc.com/jayson-demers/7-ways-successful-people-spend-their-free-time.html"
+
+    },
+
+
+    {
+        "_id": {"$oid": "9ab41f14aafb083c32f58246"},
+        "title": "How to Meditate",
+        "link": "https://www.wikihow.com/Meditate"
+
+    },
+
+
+    {
     "_id": {"$oid": "6ab41f142cf45b9803f9fcd7"},
     "title": "Happiness",
     "link": "https://www.psychologytoday.com/us/basics/happiness"
 
-}, {
+},
+    {
     "_id": {"$oid": "6ab41f149d06a8beceb914bd"},
     "title": "More life",
     "link": "https://open.spotify.com/album/1lXY618HWkwYKJWBRYR4MK"
 
-}, {
+},
+    {
     "_id": {"$oid": "6ab41f14858815fffe2f16f9"},
     "title": "Chalk change",
     "link": "https://www.dcourier.com/news/2018/apr/07/college-students-bring-chalk-change-willow-creek-c/"

@@ -81,10 +81,13 @@
         <mat-card-content>
             <a href="https://depression.org.nz/get-better/self-help/" target="_blank">Depression Help</a>
             <br>
+
             <a href="https://www.everydayhealth.com/news/cheap-natural-quick-anxiety-remedies/" target="_blank">Anxiety Help</a>
             <br>
+
             <a href="http://www.apa.org/helpcenter/controlling-anger.aspx" target="_blank">Anger Management Help</a>
             <br>
+
             <a href="http://enlightenmentportal.com/development/self-esteem-building-activities/" target="_blank">Self Esteem Building Activities</a>
 
         </mat-card-content>
@@ -93,15 +96,14 @@
              <mat-card-title class="your-resources-title">Your Added Links</mat-card-title>
 
             <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
-        <div style="height:300px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+        <div style="height:300px;border:1px solid #ccc;font:16px/16px Georgia, Garamond, Serif;overflow:auto;">
                <mat-list #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)">
 
 
                    <a href="{{resource.link}}" target="_blank">{{resource.title}}</a>  <br>
-                   <a href="deleteResource(resource._id['$oid']); " target="_black" >Delete</a>
-                   <!-- <mat-panel-title id="titleContent"><Strong>{{resource.title}}</Strong> </mat-panel-title>
+                  <!-- <a href="deleteResource(resource._id['$oid']); " target="_black" >Delete</a>-->
+                  <!--  <mat-panel-title id="titleContent">{{resource.title}}</mat-panel-title>
                     <mat-panel-description id="linkContent">  {{resource.link}}   </mat-panel-description>-->
-
 
 
                 </mat-list>

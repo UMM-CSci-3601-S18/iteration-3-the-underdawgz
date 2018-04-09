@@ -14,35 +14,39 @@ export class ResourcesService {
     constructor(private http: HttpClient) {
     }
 
-    getResource(resourceCategory?: string): Observable<Resource[]> {
-        this.filterByCategory(resourceCategory);
+    getResource(resourceTitle?: string): Observable<Resource[]> {
+        this.filterByTitle(resourceTitle);
         return this.http.get<Resource[]>(this.resourceUrl);
     }
 
     // This isn't used, but may be useful for future iterations.
+
+
     getResourceByID(id: string): Observable<Resource> {
         return this.http.get<Resource>(this.resourceUrl + '/' + id);
     }
 
+
+
     // Unfortunately we did not get to implementing specific filters,
     // but this may useful in the future.
-    filterByCategory(resourceCategory?: string): void {
-        if (!(resourceCategory == null || resourceCategory === '')) {
-            if (this.parameterPresent('category=') ) {
-                // there was a previous search by category that we need to clear
-                this.removeParameter('category=');
+    filterByTitle(resourceTitle?: string): void {
+        if (!(resourceTitle == null || resourceTitle === '')) {
+            if (this.parameterPresent('title=') ) {
+                // there was a previous search by title that we need to clear
+                this.removeParameter('title=');
             }
             if (this.resourceUrl.indexOf('?') !== -1) {
                 // there was already some information passed in this url
-                this.resourceUrl += 'category=' + resourceCategory + '&';
+                this.resourceUrl += 'title=' + resourceTitle + '&';
             } else {
                 // this was the first bit of information to pass in the url
-                this.resourceUrl += '?category=' + resourceCategory + '&';
+                this.resourceUrl += '?title=' + resourceTitle + '&';
             }
         } else {
             // there was nothing in the box to put onto the URL... reset
-            if (this.parameterPresent('category=')) {
-                let start = this.resourceUrl.indexOf('category=');
+            if (this.parameterPresent('title=')) {
+                let start = this.resourceUrl.indexOf('title=');
                 const end = this.resourceUrl.indexOf('&', start);
                 if (this.resourceUrl.substring(start - 1, start) === '?') {
                     start = start - 1;

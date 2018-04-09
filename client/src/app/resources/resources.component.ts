@@ -19,8 +19,8 @@ export class ResourcesComponent implements OnInit {
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public resourceTitle: string;
 
+    public resourceTitle: string;
     public resourceLink: string;
 
     // The ID of the resource
