@@ -28,16 +28,16 @@ public class CrisisController {
 
     // Helper method which iterates through the collection, receiving all
     // documents if no query parameter is specified.
-    public String get(String id) {
+    public String getCrisis(String id) {
 
-        FindIterable<Document> jsonResources
+        FindIterable<Document> jsonCrisis
             = crisisCollection
             .find(eq("_id", new ObjectId(id)));
 
-        Iterator<Document> iterator = jsonResources.iterator();
+        Iterator<Document> iterator = jsonCrisis.iterator();
         if (iterator.hasNext()) {
-            Document resource = iterator.next();
-            return resource.toJson();
+            Document crisisNumber = iterator.next();
+            return crisisNumber.toJson();
         } else {
             // We didn't find the desired Resource
             return null;
@@ -45,7 +45,7 @@ public class CrisisController {
     }
 
 
-    public String getResources(Map<String, String[]> queryParams) {
+    public String getCrisis(Map<String, String[]> queryParams) {
         Document filterDoc = new Document();
 
         if (queryParams.containsKey("name")) {
@@ -56,28 +56,28 @@ public class CrisisController {
             filterDoc = filterDoc.append("name", targetName);
         }
 
-        FindIterable<Document> matchingResources = crisisCollection.find(filterDoc);
+        FindIterable<Document> matchingCrisis = crisisCollection.find(filterDoc);
 
 
-        return JSON.serialize(matchingResources);
+        return JSON.serialize(matchingCrisis);
     }
 
 
-    public String addNewResources(String id, String name, String email, String phone) {
+    public String addNewCrisis(String id, String name, String email, String phone) {
 
-        Document newResources = new Document();
-        newResources.append("name", name);
-        newResources.append("email", email);
-        newResources.append("phone", phone);
+        Document newCrisis = new Document();
+        newCrisis.append("name", name);
+        newCrisis.append("email", email);
+        newCrisis.append("phone", phone);
 
 
 
 
         try {
-            crisisCollection.insertOne(newResources);
+            crisisCollection.insertOne(newCrisis);
 
-            ObjectId Id = newResources.getObjectId("_id");
-            System.err.println("Successfully added new resource [_id=" + id + ", name=" + name + ", email=" + email + " phone=" + phone + ']');
+            ObjectId Id = newCrisis.getObjectId("_id");
+            System.err.println("Successfully added new crisisNumber [_id=" + id + ", name=" + name + ", email=" + email + " phone=" + phone + ']');
 
             return JSON.serialize(Id);
         } catch (MongoException me) {

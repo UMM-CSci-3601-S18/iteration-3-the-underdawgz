@@ -120,8 +120,11 @@ public class Server {
         post("api/journals/new", journalRequestHandler::addNewJournal);
 
         //Crisis for appropriate response
+        get("api/crisis/:id", crisisRequestHandler::getCrisisJSON);
         get("api/crisis", crisisRequestHandler::getCrisis);
-        post("api/crisis/new", crisisRequestHandler:addCrisis)
+        get("api/crisis/new", crisisRequestHandler::addNewCrisis);
+
+        //post("api/crisis/new", crisisRequestHandler::addCrisis);
 
 
         // An example of throwing an unhandled exception so you can see how the
