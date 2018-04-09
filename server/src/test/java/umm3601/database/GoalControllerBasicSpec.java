@@ -168,7 +168,7 @@ public class GoalControllerBasicSpec {
             .collect(Collectors.toList());
 
 
-        assertEquals("Should return name of new goal", "Zelda", name.get(3));
+        assertEquals("Should return name of new goal", "Kai", name.get(3));
     }
 
 
