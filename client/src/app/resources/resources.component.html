@@ -72,7 +72,8 @@
     <!-- Links Card -->
     <div class="resources-div">
     <mat-card class="resources-card">
-        <mat-card-title id="resources-title">Links</mat-card-title>
+        <mat-card-title class="link-title"><mat-icon id="book-icon">book</mat-icon>Links</mat-card-title>
+
         <mat-card-subtitle>These links take you to helpful pages.</mat-card-subtitle>
 
                 <ul class="content-item" id="addNewResource"><button mat-raised-button (click)="openDialog()" class="resource-button"><mat-icon id="add-icon"> </mat-icon>Add a link</button></ul>
@@ -86,24 +87,26 @@
             <br>
             <a href="http://enlightenmentportal.com/development/self-esteem-building-activities/" target="_blank">Self Esteem Building Activities</a>
 
+        </mat-card-content>
 
 
+             <mat-card-title class="your-resources-title">Your Added Links</mat-card-title>
 
-            <mat-accordion> <mat-grid-tile-header class="your-resources-title">Your Added Links</mat-grid-tile-header>
             <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
-            <div layout="link-list" layout-wrap>
-                <mat-accordion #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)"> <br>
-                   <!-- <mat-panel-title id="titleContent"><Strong>{{resource.title}}</Strong> </mat-panel-title> <br>
+        <div style="height:300px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+               <mat-list #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)">
+
+
+                   <a href="{{resource.link}}" target="_blank">{{resource.title}}</a>  <br>
+                   <a href="deleteResource(resource._id['$oid']); " target="_black" >Delete</a>
+                   <!-- <mat-panel-title id="titleContent"><Strong>{{resource.title}}</Strong> </mat-panel-title>
                     <mat-panel-description id="linkContent">  {{resource.link}}   </mat-panel-description>-->
-                 <br>   <a href="{{resource.link}}" target="_blank">{{resource.title}}</a>
 
 
 
+                </mat-list>
 
-
-                </mat-accordion>
-
-
+        </div>
 
 
 
@@ -117,11 +120,11 @@
                     </mat-error>
                 </ng-template>
 
-            </div>
+
 
             <mat-divider></mat-divider>
-            </mat-accordion>
-        </mat-card-content>
+
+
     </mat-card>
     </div>
 

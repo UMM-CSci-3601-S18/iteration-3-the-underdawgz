@@ -1,16 +1,18 @@
 package umm3601.database;
 
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
 import spark.Request;
 import spark.Response;
+import umm3601.database.ResourceController;
 
 public class ResourceRequestHandler {
     private final ResourceController resourceController;
     public ResourceRequestHandler(ResourceController resourceController){
         this.resourceController = resourceController;
     }
-    /**Method called from Server when the 'api/resources/:id' endpoint is received.
+    /**Method called from Server when the 'api/items/:id' endpoint is received.
      * Get a JSON response with a list of all the users in the database.
      *
      * @param req the HTTP request
@@ -18,34 +20,34 @@ public class ResourceRequestHandler {
      * @return one user in JSON formatted string and if it fails it will return text with a different HTTP status code
      */
 
-    // gets one resource using its ObjectId--didn't use, just for potential future functionality
+    // gets one item using its ObjectId--didn't use, just for potential future functionality
     public String getResourceJSON(Request req, Response res){
         res.type("application/json");
         String id = req.params("id");
-        String resource;
+        String item;
         try {
-            resource = resourceController.getResource(id);
+            item = resourceController.getResource(id);
         } catch (IllegalArgumentException e) {
             // This is thrown if the ID doesn't have the appropriate
             // form for a Mongo Object ID.
             // https://docs.mongodb.com/manual/reference/method/ObjectId/
             res.status(400);
-            res.body("The requested resource id " + id + " wasn't a legal Mongo Object ID.\n" +
+            res.body("The requested item id " + id + " wasn't a legal Mongo Object ID.\n" +
                 "See 'https://docs.mongodb.com/manual/reference/method/ObjectId/' for more info.");
             return "";
         }
-        if (resource != null) {
-            return resource;
+        if (item != null) {
+            return item;
         } else {
             res.status(404);
-            res.body("The requested resource with id " + id + " was not found");
+            res.body("The requested item with id " + id + " was not found");
             return "";
         }
     }
 
 
 
-    /**Method called from Server when the 'api/resources' endpoint is received.
+    /**Method called from Server when the 'api/items' endpoint is received.
      * This handles the request received and the response
      * that will be sent back.
      *@param req the HTTP request
@@ -60,7 +62,7 @@ public class ResourceRequestHandler {
         return resourceController.getResources(req.queryMap().toMap());
     }
 
-    /**Method called from Server when the 'api/users/new'endpoint is recieved.
+    /**Method called from Server when the 'api/users/new'endpoint is received.
      * Gets specified user info from request and calls addNewUser helper method
      * to append that info to a document
      *
@@ -75,9 +77,8 @@ public class ResourceRequestHandler {
         Object o = JSON.parse(req.body());
         try {
             // if the object that is the JSON representation of the request body's class is the class BasicDBObject
-            // then try to add the resource with resourceController's addNewResource method
-            if(o.getClass().equals(BasicDBObject.class))
-            {
+            // then try to add the item with itemController's addNewItem method
+            if(o.getClass().equals(BasicDBObject.class)) {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
 
@@ -85,12 +86,10 @@ public class ResourceRequestHandler {
                     String link = dbO.getString("link");
 
 
-                    System.err.println("Adding new resource [title=" + title + ", link=" + link +']');
+                    System.err.println("Adding new resource [title=" + title + ", link=" + link +  ']');
                     return resourceController.addNewResource(title, link).toString();
-                }
-                catch(NullPointerException e)
-                {
-                    System.err.println("A value was malformed or omitted, new resource request failed.");
+                } catch (NullPointerException e) {
+                    System.err.println("A value was malformed or omitted, new item request failed.");
                     return null;
                 }
 
@@ -100,6 +99,27 @@ public class ResourceRequestHandler {
                 System.err.println("Expected BasicDBObject, received " + o.getClass());
                 return null;
             }
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
+
+
+
+    public String deleteResource(Request req, Response res){
+
+        System.out.println("I'm here");
+        System.out.println(req.params(":id"));
+
+        res.type("application/json");
+
+        try {
+            String id = req.params(":id");
+            resourceController.deleteResource(id);
+            return req.params(":id");
         }
         catch(RuntimeException ree)
         {

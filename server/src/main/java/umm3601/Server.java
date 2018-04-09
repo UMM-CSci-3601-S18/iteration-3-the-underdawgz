@@ -106,6 +106,8 @@ public class Server {
         get("api/resources", resourceRequestHandler::getResources);
         get("api/resources/:id", resourceRequestHandler::getResourceJSON);
         post("api/resources/new", resourceRequestHandler::addNewResource);
+     //   delete("api/resources/delete", goalRequestHandler::deleteResources);
+
 
 
         //List journals, filtered using query parameters
