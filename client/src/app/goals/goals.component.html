@@ -13,21 +13,46 @@
         <div class="second-sec">
         <mat-card id="mainCard"><mat-card-title id="your-goals" class="your-goals-title">Your Goals</mat-card-title>
             <mat-card-subtitle class="your-goals-title">All of your goals are displayed here.</mat-card-subtitle>
-            <div layout="row" layout-wrap>
-                <mat-card #elem class="goals" [id]="goal.name" *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName)">
+            <div id="goals tabs">
+                <!--<mat-tab-group> #myGoalsGroup
+                    <mat-tab label="Incomplete">-->
+                        <br>
+                        <div layout="row" layout-wrap>
+                            <mat-card class="goals"
+                                      *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus)"
+                                      #elem [id]="goal._id['$oid']">
 
-                    <mat-card-content class="content"><h2><i>{{goal.name}}</i></h2>
-                        <i>Category:</i> {{goal.category}}<br>
-                        <i>Purpose of this goal:</i> {{goal.goal}}
-                    </mat-card-content>
+                                <mat-card-content class="content"><h2><i>{{goal.name}}</i></h2>
+                                    <i>Category:</i> {{goal.category}}<br>
+                                    <i>Purpose of this goal:</i> {{goal.goal}}<br>
+                                    <i>Status:
+                                        <b *ngIf="goal.status" id="goal-complete">Complete</b>
+                                        <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
+                                    </i>
+                                </mat-card-content>
 
-                    <div id="editButton" class="editGoal">
-                        <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.name, goal.category, goal.goal)">
-                        <mat-icon id="edit-icon">edit</mat-icon>
-                    </button>
-                    </div>
-                </mat-card>
+                                <div id="editButton" class="editGoal">
+                                    <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status)">
+                                    <mat-icon id="edit-icon">edit</mat-icon>
+                                    </button>
+                                    <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"
+                                            (click)="goalSatisfied(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status);">
+                                        <mat-icon>done</mat-icon>
+                                    </button>
+                                </div>
+
+                            </mat-card>
+                        </div>
+                    <!--</mat-tab>
+
+                    <mat-tab label="Complete">
+
+                    </mat-tab>
+                </mat-tab-group>-->
             </div>
+
+
+
             <ng-template #goalsError>
                 <mat-error>
                     There was a problem loading the goals. Possibly the server is down or perhaps there are network
