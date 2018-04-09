@@ -128,7 +128,7 @@ public class GoalControllerBasicSpec {
 
     @Test
     public void addGoalTest(){
-        String newId = goalController.addNewGoal("Aaron", "Injury", "Do not stab knee on keyboard holder.");
+        String newId = goalController.addNewGoal("Aaron", "Injury", "Do not stab knee on keyboard holder.", false);
 
         assertNotNull("Add new goal should return true when goal is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
