@@ -64,6 +64,7 @@ public class CrisisController {
 
 
     public String addNewCrisis(String id, String name, String email, String phone) {
+        System.out.println("Adding new crisis " + name);
 
         Document newCrisis = new Document();
         newCrisis.append("name", name);

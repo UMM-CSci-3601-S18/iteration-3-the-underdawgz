@@ -70,7 +70,7 @@ public class CrisisRequestHandler {
      */
     public String addNewCrisis(Request req, Response res)
     {
-
+        System.out.println("Received a request to add a new crisis");
         res.type("application/json");
         Object o = JSON.parse(req.body());
         try {

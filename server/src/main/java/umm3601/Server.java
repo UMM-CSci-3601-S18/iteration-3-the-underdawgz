@@ -124,7 +124,7 @@ public class Server {
         //Crisis for appropriate response
         get("api/crisis/:id", crisisRequestHandler::getCrisisJSON);
         get("api/crisis", crisisRequestHandler::getCrisis);
-        get("api/crisis/new", crisisRequestHandler::addNewCrisis);
+        post("api/crisis/new", crisisRequestHandler::addNewCrisis);
 
         //post("api/crisis/new", crisisRequestHandler::addCrisis);
 
