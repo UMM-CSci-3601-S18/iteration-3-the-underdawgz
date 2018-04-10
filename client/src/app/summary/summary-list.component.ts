@@ -120,13 +120,54 @@ export class SummaryListComponent implements OnInit {
 
     }
 
-    filterGraphHourly(hour, filterMood): number {
+    getLastWeekDate(){
+        return null;
+    }
+
+    getRightForm(date: number, month: number, year: number){
+        var today;
+        if(date<10){
+            date='0'+date;
+        }
+        if(month<10){
+            month='0'+month;
+        }
+        var today = month+'/'+date+'/'+year;
+        return today;
+    }
+
+   /* getThisWeekDate(){
+        var days = new Array(8);
+        var today = new Date();
+        var first = today.getDate() - today.getDay();
+        var firstDay = new Date(today.setDate(first));
+        var dd = firstday.getDate();
+        var mm = firstday.getMonth()+1;
+        if(dd<10){
+            dd='0'+dd;
+        }
+        if(mm<10){
+            mm='0'+mm;
+        }
+        var today = mm+'/'+dd;
+        //var dayForm = this.getRightForm(firstDay.getDate(), firstday.getMonth() + 1, firstDay.getFullYear());
+        days.push(today);
+       /!* var secondDay = new Date(today.setDate(today.getDate()+1));
+        days.push(secondDay);
+        var i;
+        for( i=2; i<9; i++){
+            days.push((today.setDate(today.getDate()+1)));
+        }*!/
+        return days;
+    }*/
+
+    /*filterGraphHourly(hour, filterMood): number {
         console.log(this.filteredSummarys.length);
         var filterData = this.filteredSummarys;
 
         filterData = filterData.filter(summary => {
             this.getDate = new Date(summary.date);
-            return this.getDate.getHours() == weekday;
+            return this.getDate.getHours() == hour;
         });
 
         filterMood = filterMood.toLocaleLowerCase();
@@ -135,7 +176,7 @@ export class SummaryListComponent implements OnInit {
         });
 
         return filterData.length;
-    }
+    }*/
 
     /**
      * Starts an asynchronous operation to update the emojis list
@@ -259,7 +300,8 @@ export class SummaryListComponent implements OnInit {
 
         var summaryDays;
 
-        let days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+       // let days = this.getThisWeekDate();
+        var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
         let happy_weekly_totals = {"label":"Happy",
             "data":[
                 this.filterGraphWeekly('0', 'happy'),
@@ -353,6 +395,7 @@ export class SummaryListComponent implements OnInit {
         this.myChart = new Chart(this.ctx, {
             type: 'line',
             data: {
+                labels: days,
                 datasets: [
                     happy_weekly_totals,
                     sad_weekly_totals,
@@ -366,13 +409,18 @@ export class SummaryListComponent implements OnInit {
                 responsive: true,
                 maintainAspectRation: false,
                 scales: {
-                    xAxes: [{
+                    /*xAxes: [{
+                        isoWeekday: true,
                         type: 'time',
-                        position: 'bottom',
+                        unitStepSize:1,
+                        distribution: 'linear',
                         time: {
-                            unit: "day",
+                            displayFormats:{
+                                'week': 'MMM DD'
+                            }
+                            unit: 'week',
                         },
-                    }],
+                    }],*/
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
