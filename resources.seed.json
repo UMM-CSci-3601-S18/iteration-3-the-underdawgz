@@ -44,10 +44,4 @@
     "title": "More life",
     "link": "https://open.spotify.com/album/1lXY618HWkwYKJWBRYR4MK"
 
-},
-    {
-    "_id": {"$oid": "6ab41f14858815fffe2f16f9"},
-    "title": "Chalk change",
-    "link": "https://www.dcourier.com/news/2018/apr/07/college-students-bring-chalk-change-willow-creek-c/"
-
 }]

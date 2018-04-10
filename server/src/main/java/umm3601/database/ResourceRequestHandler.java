@@ -111,7 +111,7 @@ public class ResourceRequestHandler {
 
     public String deleteResource(Request req, Response res){
 
-        System.out.println("I'm here");
+       /* System.out.println("I'm here");*/
         System.out.println(req.params(":id"));
 
         res.type("application/json");

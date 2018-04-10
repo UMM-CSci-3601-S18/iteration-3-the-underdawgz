@@ -100,13 +100,13 @@
                <mat-list #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)">
 
 
-                   <a href="{{resource.link}}" target="_blank">{{resource.title}}</a>  <br>
+                   <a href="{{resource.link}}" target="_blank">{{resource.title}} </a>  <br>
                   <!-- <a href="deleteResource(resource._id['$oid']); " target="_black" >Delete</a>-->
-                  <!--  <mat-panel-title id="titleContent">{{resource.title}}</mat-panel-title>
-                    <mat-panel-description id="linkContent">  {{resource.link}}   </mat-panel-description>-->
+                   <!-- <mat-panel-title id="titleContent">{{resource.title}}</mat-panel-title>
+                   <mat-panel-description id="linkContent">  {{resource.link}}   </mat-panel-description> -->
 
 
-                </mat-list>
+               </mat-list>
 
         </div>
 

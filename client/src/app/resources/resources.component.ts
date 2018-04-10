@@ -46,6 +46,7 @@ export class ResourcesComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.resourceService.addNewResource(result).subscribe(
                 addResourceResult => {
+                    console.log(result.title);
                     console.log("It completed the addNewResource function");
                     this.highlightedID = addResourceResult;
                     this.refreshResources();

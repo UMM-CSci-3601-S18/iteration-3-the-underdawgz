@@ -1,7 +1,6 @@
 package umm3601.database;
 
 
-
 import com.google.gson.Gson;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
@@ -22,7 +21,7 @@ public class ResourceController {
 
     private final Gson gson;
     private MongoDatabase database;
-    // resoureCollection is the collection that the resources data is in.
+    // resourceCollection is the collection that the resources data is in.
     private final MongoCollection<Document> resourceCollection;
 
     // Construct controller for items.
@@ -59,30 +58,29 @@ public class ResourceController {
         // "resource" will be a key to a string object, where the object is
         // what we get when people enter their resources as a text body.
         // "resource" is the purpose of the resource
-        if (queryParams.containsKey("link")) {
-            String targetContent = (queryParams.get("link")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("link", contentRegQuery);  //purpose
-        }
-
-        // category is the category of the resource, also a String
-
-
-        // name is the title of the resource
         if (queryParams.containsKey("title")) {
             String targetContent = (queryParams.get("title")[0]);
             Document contentRegQuery = new Document();
             contentRegQuery.append("$regex", targetContent);
             contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("title", contentRegQuery);      //name
+            filterDoc = filterDoc.append("title", contentRegQuery);
         }
 
-        /*if (queryParams.containsKey("status")) {
+
+
+        // link is the title of the resource
+        if (queryParams.containsKey("link")) {
+            String targetContent = (queryParams.get("link")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("link", contentRegQuery);
+        }
+
+        if (queryParams.containsKey("status")) {
             boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
             filterDoc = filterDoc.append("status", targetStatus);
-        }*/
+        }
 
         // FindIterable comes from mongo, Document comes from Gson
         FindIterable<Document> matchingResources = resourceCollection.find(filterDoc);
@@ -103,16 +101,15 @@ public class ResourceController {
 
         // makes the search Document key-pairs
         Document newResource = new Document();
-        newResource.append("link", title);
+        newResource.append("title", title);
         newResource.append("link", link);
-
         // Append new resources here
 
         try {
             resourceCollection.insertOne(newResource);
             ObjectId id = newResource.getObjectId("_id");
 
-            System.err.println("Successfully added new resource [_id=" + id + ", title=" + title + ", link=" + link + ']');
+            System.err.println("Successfully added new resource [ title=" + title + ", link=" + link + ']');
             //return id.toHexString();
             return JSON.serialize(id);
         } catch(MongoException me) {
