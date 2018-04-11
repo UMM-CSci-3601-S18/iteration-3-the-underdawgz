@@ -59,6 +59,8 @@ export class ResourcesComponent implements OnInit {
         });
     }
 
+
+
     public filterResources(searchTitle: string, searchLink: string): Resource[] {
 
         this.filteredResources = this.resources;
@@ -83,6 +85,23 @@ export class ResourcesComponent implements OnInit {
         }
         return this.filteredResources;
     }
+
+
+    deleteResource(_id: string){
+        this.resourceService.deleteResource(_id).subscribe(
+            resources => {
+                this.refreshResources();
+                this.loadService();
+            },
+            err => {
+                console.log(err);
+                this.refreshResources();
+                this.loadService();
+            }
+        );
+    }
+
+
 
 
     refreshResources(): Observable<Resource[]> {
@@ -122,6 +141,9 @@ export class ResourcesComponent implements OnInit {
         this.refreshResources();
         this.loadService();
     }
+
+
+
 
 }
 

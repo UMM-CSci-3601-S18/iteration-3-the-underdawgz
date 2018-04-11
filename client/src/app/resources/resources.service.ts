@@ -83,5 +83,18 @@ export class ResourcesService {
         // Send post request to add a new resource with the user data as the body with specified headers.
         return this.http.post<{'$oid': string}>(this.resourceUrl + '/new', newResource, httpOptions);
     }
+
+    deleteResource(resourcedID: String) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+
+        return this.http.delete(this.resourceUrl + '/delete/' + resourcedID, httpOptions);
+    }
+
+
+
 }
 

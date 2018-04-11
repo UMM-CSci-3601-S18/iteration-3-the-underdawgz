@@ -32,9 +32,11 @@ import {JournalsComponent} from "./Journal/journals.component";
 import {AddJournalComponent} from "./Journal/add-journal.component";
 import {JournalsService} from "./Journal/journals.service";
 
+
 import {ResourcesComponent} from "./resources/resources.component";
 import {AddResourceComponent} from "./resources/add-resource.component";
 import {ResourcesService} from "./resources/resources.service";
+
 
 @NgModule({
     imports: [
@@ -54,6 +56,7 @@ import {ResourcesService} from "./resources/resources.service";
 
         JournalsComponent,
         AddJournalComponent,
+     /*   CheckboxOverviewToDelete,*/
 
         EditGoalComponent,
         SummaryListComponent,

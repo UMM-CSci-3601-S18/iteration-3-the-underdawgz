@@ -3,7 +3,7 @@
 <main>
 <div layout='row' layout-xs="column" class="best-div">
 
-    <!-- Phone Numbers Card -->
+    <!-- Phone Numbers Card   -->
     <div class="phone-div">
     <mat-card class="phone-numbers">
         <mat-card-title class="phone-numbers-title"><mat-icon id="phone-icon">phone</mat-icon>Phone Numbers</mat-card-title>
@@ -96,23 +96,45 @@
              <mat-card-title class="your-resources-title">Your Added Links</mat-card-title>
 
             <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
+
+
+
+
+
+
+
+
+
+
         <div style="height:300px;border:1px solid #ccc;font:16px/16px Georgia, Garamond, Serif;overflow:auto;">
-               <mat-list #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)">
+               <mat-list #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)"
+                         #elem [id]="resource._id['$oid']">
 
 
-                   <a href="{{resource.link}}" target="_blank">{{resource.title}} </a>  <br>
-                  <!-- <a href="deleteResource(resource._id['$oid']); " target="_black" >Delete</a>-->
-                   <!-- <mat-panel-title id="titleContent">{{resource.title}}</mat-panel-title>
-                   <mat-panel-description id="linkContent">  {{resource.link}}   </mat-panel-description> -->
+            <a href="{{resource.link}}" target="_blank">{{resource.title}} </a>
 
+
+                   <button mat-icon-button class="button delete-button"
+                           (click)="deleteResource(resource._id['$oid'])">
+                       <mat-icon>delete</mat-icon>
+                   </button>
+
+
+                   <!--<mat-card class="delete resources">
+                       &lt;!&ndash;<ul class="content-item" id="deleteResource"><button mat-raised-button (click)="deleteResource(resource._id['$oid'])" class="resource-button">delete links</button></ul>
+                       &ndash;&gt;
+                       <button mat-icon-button class="button delete-button"
+                               (click)="deleteResource(resource._id['$oid'])">
+                           <mat-icon>delete</mat-icon>
+                       </button>
+
+                   </mat-card>-->
 
                </mat-list>
 
         </div>
 
-
-
-                <ng-template #resourcesError>
+        <ng-template #resourcesError>
                     <mat-error>
                         There was a problem loading the links. Possibly the server is down or perhaps there are network
                         issues.
@@ -126,9 +148,16 @@
 
             <mat-divider></mat-divider>
 
-
     </mat-card>
+
+
+
+
     </div>
+
+
+
+
 
 </div>
 </main>
