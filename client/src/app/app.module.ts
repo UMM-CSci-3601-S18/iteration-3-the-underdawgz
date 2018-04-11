@@ -27,8 +27,6 @@ import {EmotionResponseAnxiousComponent} from "./home/emotion-response-anxious.c
 import {SummaryListComponent} from "./summary/summary-list.component";
 import {SummaryListService} from "./summary/summary-list.service";
 
-
-
 import {JournalsComponent} from "./Journal/journals.component";
 import {AddJournalComponent} from "./Journal/add-journal.component";
 import {JournalsService} from "./Journal/journals.service";
