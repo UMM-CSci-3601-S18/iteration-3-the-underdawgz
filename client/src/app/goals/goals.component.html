@@ -13,6 +13,28 @@
         <div class="second-sec">
         <mat-card id="mainCard"><mat-card-title id="your-goals" class="your-goals-title">Your Goals</mat-card-title>
             <mat-card-subtitle class="your-goals-title">All of your goals are displayed here.</mat-card-subtitle>
+            <div layout-gt-sm="row">
+                <div flex-gt-sm="80" flex-offset-gt-sm="10">
+                    <mat-card>
+                        <mat-card-title id="goal-filtering">Filtering</mat-card-title>
+                        <mat-card-content>
+                            <mat-card>
+                                <mat-card-content>
+                <span id="ownerInput">
+                    <mat-form-field>
+                        <input matInput id="goalCategory" #input type="search" placeholder="Search for category" [(ngModel)]="goalCategory" />
+                        <button mat-button id="ownerClearSearch" type="button" *ngIf="goalCategory" matSuffix mat-icon-button aria-label="clear" (click)="todoOwner='';loadService()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <button mat-raised-button id="submit" color="primary" #input type="button" (click)="loadService()">Submit</button>
+                </span>
+                                </mat-card-content>
+                            </mat-card>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
             <div id="goals tabs">
                 <mat-tab-group> #myGoalsGroup
                     <mat-tab label="Incomplete" id="incomplete">
