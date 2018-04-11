@@ -68,20 +68,20 @@
             <div id="tabs">
             <mat-tab-group #myTabGroup >
                 <mat-tab label="Basic Review">
-                    <!--
                     <div id="graphFilter">
                         <form>
-                            <label> Represent entries by day or hour?</label>
+                            <label> Which period of entries you want to look at?</label>
                             <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
-                                <option id ="Day" selected value="Day">Day</option>
-                                <option id = "Hour" value="Hour">Hour</option>
+                                <option id ="Today" value="Today">Today</option>
+                                <option id ="This week" selected value="This week">This week</option>
+                                <option id ="Last week" value="Last week">Last week</option>
+                                <option id ="Today" value="Today">Today</option>
                             </select>
                             <br>
                         </form>
                         <button mat-raised-button id="filterButton" (click)="this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate); updateChart()">Update Graph</button>
                         <br>
                     </div>
-                    -->
                     <mat-card> <mat-card-title class="your-summarys-title">Your Emotions</mat-card-title>
                         <mat-card-subtitle class="your-summarys-title">There are {{totalNumberMoods()}} entries represented</mat-card-subtitle>
                     <canvas id="myChart" height="auto"></canvas>
@@ -99,7 +99,7 @@
 
                         <mat-card-subtitle class="your-summarys-title">You have {{totalNumberMoods()}} emotions to view</mat-card-subtitle>
                         <mat-accordion *ngIf="summarys && myTabGroup.selectedIndex == 1; else summarysError">
-                            <mat-expansion-panel #elem class="summarys" [id]="summary._id" [expanded]="this.isHighlighted(summary)" *ngFor="let summary of this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate)">
+                            <mat-expansion-panel #elem class="summarys" [id]="summary._id" [expanded]="this.isHighlighted(summary)" <!--*ngFor="let summary of this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate)"-->>
                                 <mat-expansion-panel-header>
                                     <mat-panel-title id="name">You felt {{summary.mood}} on
                                         {{stringToDate(summary.date).toLocaleDateString()}} at

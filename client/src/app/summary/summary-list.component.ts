@@ -100,7 +100,7 @@ export class SummaryListComponent implements OnInit {
         return this.filteredSummarys;
     }
 
-    filterGraphWeekly(weekday, filterMood): number {
+    filterGraphThisWeek(weekday, filterMood): number {
         console.log(this.filteredSummarys.length);
         var filterData = this.filteredSummarys;
 
@@ -120,48 +120,71 @@ export class SummaryListComponent implements OnInit {
 
     }
 
-    getLastWeekDate(){
+    filterGraphLastWeek(weekday, filterMood): number {
+        console.log(this.filteredSummarys.length);
+        var filterData = this.filteredSummarys;
+
+
+        // Filter by weekday
+        filterData = filterData.filter(summary => {
+            this.getDate = new Date(summary.date);
+            return this.getDate.getDay() == weekday;
+        });
+
+        // filter by mood
+        filterMood = filterMood.toLocaleLowerCase();
+        filterData = filterData.filter(summary => {
+            return !filterMood || summary.mood.toLowerCase().indexOf(filterMood) !== -1;
+        });
+
+        return filterData.length;
+
+    }
+
+    /*getLastWeekDate(){
         return null;
+    }*/
+
+    getRightFormForDate(date: number, month: number, year: number){
+        let mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        let mon = mons[month]
+        let rightForm = mon+' '+date+' '+year;
+        return rightForm;
     }
 
-    getRightForm(date: number, month: number, year: number){
-        var today;
-        if(date<10){
-            date='0'+date;
-        }
-        if(month<10){
-            month='0'+month;
-        }
-        var today = month+'/'+date+'/'+year;
-        return today;
-    }
-
-   /* getThisWeekDate(){
-        var days = new Array(8);
+    getThisWeekDate(){
+        var days = [];
         var today = new Date();
         var first = today.getDate() - today.getDay();
         var firstDay = new Date(today.setDate(first));
-        var dd = firstday.getDate();
-        var mm = firstday.getMonth()+1;
-        if(dd<10){
-            dd='0'+dd;
-        }
-        if(mm<10){
-            mm='0'+mm;
-        }
-        var today = mm+'/'+dd;
-        //var dayForm = this.getRightForm(firstDay.getDate(), firstday.getMonth() + 1, firstDay.getFullYear());
-        days.push(today);
-       /!* var secondDay = new Date(today.setDate(today.getDate()+1));
-        days.push(secondDay);
+        var theDay = this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
+        days.push(theDay);
         var i;
-        for( i=2; i<9; i++){
-            days.push((today.setDate(today.getDate()+1)));
-        }*!/
+        var nextDay;
+        for( i=1; i<7; i++){
+            nextDay = new Date(today.setDate(today.getDate()+1));
+            days.push(this.getRightFormForDate(nextDay.getDate(), nextDay.getMonth(), nextDay.getFullYear()));
+        }
         return days;
-    }*/
+    }
 
-    /*filterGraphHourly(hour, filterMood): number {
+    getLastWeekDate(){
+        var days = [];
+        var today = new Date();
+        var first = today.getDate() - today.getDay() - 7;
+        var firstDay = new Date(today.setDate(first));
+        var theDay = this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
+        days.push(theDay);
+        var i;
+        var nextDay;
+        for( i=1; i<7; i++){
+            nextDay = new Date(today.setDate(today.getDate()+1));
+            days.push(this.getRightFormForDate(nextDay.getDate(), nextDay.getMonth(), nextDay.getFullYear()));
+        }
+        return days;
+    }
+
+    filterGraphHourly(hour, filterMood): number {
         console.log(this.filteredSummarys.length);
         var filterData = this.filteredSummarys;
 
@@ -176,14 +199,14 @@ export class SummaryListComponent implements OnInit {
         });
 
         return filterData.length;
-    }*/
+    }
 
     /**
      * Starts an asynchronous operation to update the emojis list
      *
      */
 
-    /*updateChart(): void{
+    updateChart(): void{
 
         this.myChart.destroy();
 
@@ -192,59 +215,57 @@ export class SummaryListComponent implements OnInit {
 
         var type;
         var summaryDays;
-        var summaryHours;
+        var summary_happy_hours;
 
-        var displayData;
+        var display_happy_Data;
 
-        var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
         var hours = ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM',
             '8AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM',
             '5 PM', '6 PM', '7 PM', '8 PM','9 PM', '10 PM', '11 PM'];
 
         console.log(this.inputType);
-        if(this.inputType == "Hour"){
+        if(this.inputType == "Today"){
             type = hours;
 
-            summaryHours = {
+            summary_happy_hours = {
                 "label": "Total Number of Entries",
                 "data": [
-                    this.filterGraph('0'),
-                    this.filterGraph('1'),
-                    this.filterGraph('2'),
-                    this.filterGraph('3'),
-                    this.filterGraph('4'),
-                    this.filterGraph('5'),
-                    this.filterGraph('6'),
-                    this.filterGraph('7'),
-                    this.filterGraph('8'),
-                    this.filterGraph('9'),
-                    this.filterGraph('10'),
-                    this.filterGraph('11'),
-                    this.filterGraph('12'),
-                    this.filterGraph('13'),
-                    this.filterGraph('14'),
-                    this.filterGraph('15'),
-                    this.filterGraph('16'),
-                    this.filterGraph('17'),
-                    this.filterGraph('18'),
-                    this.filterGraph('19'),
-                    this.filterGraph('20'),
-                    this.filterGraph('21'),
-                    this.filterGraph('22'),
-                    this.filterGraph('23'),
-                    this.filterGraph('24')
+                    this.filterGraphHourly('0', 'happy'),
+                    this.filterGraphHourly('1', 'happy'),
+                    this.filterGraphHourly('2', 'happy'),
+                    this.filterGraphHourly('3', 'happy'),
+                    this.filterGraphHourly('4', 'happy'),
+                    this.filterGraphHourly('5', 'happy'),
+                    this.filterGraphHourly('6', 'happy'),
+                    this.filterGraphHourly('7', 'happy'),
+                    this.filterGraphHourly('8', 'happy'),
+                    this.filterGraphHourly('9', 'happy'),
+                    this.filterGraphHourly('10', 'happy'),
+                    this.filterGraphHourly('11', 'happy'),
+                    this.filterGraphHourly('12', 'happy'),
+                    this.filterGraphHourly('13', 'happy'),
+                    this.filterGraphHourly('14', 'happy'),
+                    this.filterGraphHourly('15', 'happy'),
+                    this.filterGraphHourly('16', 'happy'),
+                    this.filterGraphHourly('17', 'happy'),
+                    this.filterGraphHourly('18', 'happy'),
+                    this.filterGraphHourly('19', 'happy'),
+                    this.filterGraphHourly('20', 'happy'),
+                    this.filterGraphHourly('21', 'happy'),
+                    this.filterGraphHourly('22', 'happy'),
+                    this.filterGraphHourly('23', 'happy'),
+                    this.filterGraphHourly('24', 'happy')
                 ],
                 hidden: false,
                 "fill": false,
                 "backgroundColor": "blue",
-                "borderColor": "black",
+                "borderColor":"rgb(150, 0, 100)",
                 "lineTension": 0.1
             };
-            displayData = summaryHours;
+            display_happy_Data = summary_happy_hours;
         }
-        else {
-            console.log("here");
-            type = days;
+        else if (this.inputType == "Last week"){
+            /*type = days;
 
             summaryDays = {
                 "label": "Total Number of Entries",
@@ -264,7 +285,7 @@ export class SummaryListComponent implements OnInit {
                 "lineTension": 0.1
             };
 
-            displayData = summaryDays;
+            displayData = summaryDays;*/
         }
 
 
@@ -273,7 +294,7 @@ export class SummaryListComponent implements OnInit {
             data: {
 
                 labels: type,
-                datasets: [displayData]
+                datasets: [display_happy_Data,]
             },
             options: {
                 responsive: true,
@@ -291,26 +312,28 @@ export class SummaryListComponent implements OnInit {
 
 
 
-    }*/
+    }
 
     buildChart(): void {
 
         this.canvas = document.getElementById("myChart");
         this.ctx = this.canvas;
 
-        var summaryDays;
+        let summaryDays;
 
-       // let days = this.getThisWeekDate();
-        var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+        var currWeek = this.getThisWeekDate();
+        var first = currWeek[0];
+        let days = [first, currWeek[1], currWeek[2], currWeek[3], currWeek[4], currWeek[5], currWeek[6]];
+
         let happy_weekly_totals = {"label":"Happy",
             "data":[
-                this.filterGraphWeekly('0', 'happy'),
-                this.filterGraphWeekly('1', 'happy'),
-                this.filterGraphWeekly('2', 'happy'),
-                this.filterGraphWeekly('3', 'happy'),
-                this.filterGraphWeekly('4', 'happy'),
-                this.filterGraphWeekly('5', 'happy'),
-                this.filterGraphWeekly('6', 'happy')
+                this.filterGraphThisWeek('0', 'happy'),
+                this.filterGraphThisWeek('1', 'happy'),
+                this.filterGraphThisWeek('2', 'happy'),
+                this.filterGraphThisWeek('3', 'happy'),
+                this.filterGraphThisWeek('4', 'happy'),
+                this.filterGraphThisWeek('5', 'happy'),
+                this.filterGraphThisWeek('6', 'happy')
             ],
             hidden: false,
             "fill":false,
@@ -319,13 +342,13 @@ export class SummaryListComponent implements OnInit {
 
         let sad_weekly_totals = {"label":"Sad",
             "data":[
-                this.filterGraphWeekly('0', 'sad'),
-                this.filterGraphWeekly('1', 'sad'),
-                this.filterGraphWeekly('2', 'sad'),
-                this.filterGraphWeekly('3', 'sad'),
-                this.filterGraphWeekly('4', 'sad'),
-                this.filterGraphWeekly('5', 'sad'),
-                this.filterGraphWeekly('6', 'sad')
+                this.filterGraphThisWeek('0', 'sad'),
+                this.filterGraphThisWeek('1', 'sad'),
+                this.filterGraphThisWeek('2', 'sad'),
+                this.filterGraphThisWeek('3', 'sad'),
+                this.filterGraphThisWeek('4', 'sad'),
+                this.filterGraphThisWeek('5', 'sad'),
+                this.filterGraphThisWeek('6', 'sad')
             ],
             hidden: false,
             "fill":false,
@@ -334,13 +357,13 @@ export class SummaryListComponent implements OnInit {
 
         let meh_weekly_totals = {"label":"Meh",
             "data":[
-                this.filterGraphWeekly('0', 'meh'),
-                this.filterGraphWeekly('1', 'meh'),
-                this.filterGraphWeekly('2', 'meh'),
-                this.filterGraphWeekly('3', 'meh'),
-                this.filterGraphWeekly('4', 'meh'),
-                this.filterGraphWeekly('5', 'meh'),
-                this.filterGraphWeekly('6', 'meh')
+                this.filterGraphThisWeek('0', 'meh'),
+                this.filterGraphThisWeek('1', 'meh'),
+                this.filterGraphThisWeek('2', 'meh'),
+                this.filterGraphThisWeek('3', 'meh'),
+                this.filterGraphThisWeek('4', 'meh'),
+                this.filterGraphThisWeek('5', 'meh'),
+                this.filterGraphThisWeek('6', 'meh')
             ],
             hidden: false,
             "fill":false,
@@ -349,13 +372,13 @@ export class SummaryListComponent implements OnInit {
 
         let mad_weekly_totals = {"label":"Mad",
             "data":[
-                this.filterGraphWeekly('0', 'mad'),
-                this.filterGraphWeekly('1', 'mad'),
-                this.filterGraphWeekly('2', 'mad'),
-                this.filterGraphWeekly('3', 'mad'),
-                this.filterGraphWeekly('4', 'mad'),
-                this.filterGraphWeekly('5', 'mad'),
-                this.filterGraphWeekly('6', 'mad')
+                this.filterGraphThisWeek('0', 'mad'),
+                this.filterGraphThisWeek('1', 'mad'),
+                this.filterGraphThisWeek('2', 'mad'),
+                this.filterGraphThisWeek('3', 'mad'),
+                this.filterGraphThisWeek('4', 'mad'),
+                this.filterGraphThisWeek('5', 'mad'),
+                this.filterGraphThisWeek('6', 'mad')
             ],
             hidden: false,
             "fill":false,
@@ -364,13 +387,13 @@ export class SummaryListComponent implements OnInit {
 
         let scared_weekly_totals = {"label":"Scared",
             "data":[
-                this.filterGraphWeekly('0', 'scared'),
-                this.filterGraphWeekly('1', 'scared'),
-                this.filterGraphWeekly('2', 'scared'),
-                this.filterGraphWeekly('3', 'scared'),
-                this.filterGraphWeekly('4', 'scared'),
-                this.filterGraphWeekly('5', 'scared'),
-                this.filterGraphWeekly('6', 'scared')
+                this.filterGraphThisWeek('0', 'scared'),
+                this.filterGraphThisWeek('1', 'scared'),
+                this.filterGraphThisWeek('2', 'scared'),
+                this.filterGraphThisWeek('3', 'scared'),
+                this.filterGraphThisWeek('4', 'scared'),
+                this.filterGraphThisWeek('5', 'scared'),
+                this.filterGraphThisWeek('6', 'scared')
             ],
             hidden: false,
             "fill":false,
@@ -379,13 +402,13 @@ export class SummaryListComponent implements OnInit {
 
         let anxious_weekly_totals = {"label":"Anxious",
             "data":[
-                this.filterGraphWeekly('0', 'anxious'),
-                this.filterGraphWeekly('1', 'anxious'),
-                this.filterGraphWeekly('2', 'anxious'),
-                this.filterGraphWeekly('3', 'anxious'),
-                this.filterGraphWeekly('4', 'anxious'),
-                this.filterGraphWeekly('5', 'anxious'),
-                this.filterGraphWeekly('6', 'anxious')
+                this.filterGraphThisWeek('0', 'anxious'),
+                this.filterGraphThisWeek('1', 'anxious'),
+                this.filterGraphThisWeek('2', 'anxious'),
+                this.filterGraphThisWeek('3', 'anxious'),
+                this.filterGraphThisWeek('4', 'anxious'),
+                this.filterGraphThisWeek('5', 'anxious'),
+                this.filterGraphThisWeek('6', 'anxious')
             ],
             hidden: false,
             "fill":false,
@@ -395,7 +418,7 @@ export class SummaryListComponent implements OnInit {
         this.myChart = new Chart(this.ctx, {
             type: 'line',
             data: {
-                labels: days,
+                labels: [currWeek[0], currWeek[1], currWeek[2], currWeek[3], currWeek[4], currWeek[5], currWeek[6]],
                 datasets: [
                     happy_weekly_totals,
                     sad_weekly_totals,
@@ -409,18 +432,6 @@ export class SummaryListComponent implements OnInit {
                 responsive: true,
                 maintainAspectRation: false,
                 scales: {
-                    /*xAxes: [{
-                        isoWeekday: true,
-                        type: 'time',
-                        unitStepSize:1,
-                        distribution: 'linear',
-                        time: {
-                            displayFormats:{
-                                'week': 'MMM DD'
-                            }
-                            unit: 'week',
-                        },
-                    }],*/
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
