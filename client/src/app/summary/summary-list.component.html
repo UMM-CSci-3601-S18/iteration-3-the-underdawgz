@@ -10,34 +10,6 @@
                 <h3><i>Filtering:</i></h3>
 
             <div id="filterContents">
-                <!--
-            <form>
-                <label> Mood:</label>
-                <select name="dropdown" id="summaryMood" #input placeholder="Filter by Mood" (input)="summaryMood = $event.target.value">
-                    <option id ="dropdownAllMoods" selected value="All">All Moods</option>
-                    <option id = "dropdownHappy" value="Happy">Happy</option>
-                    <option id = "dropdownScared" value="Scared">Scared</option>
-                    <option id ="dropdownSad" value="Sad">Sad</option>
-                    <option id ="dropdownMeh" value="Meh">Meh</option>
-                    <option id ="dropdownMad" value="Mad">Mad</option>
-                    <option id ="dropdownAnxious" value="Anxious">Anxious</option>
-                </select>
-            </form>
-                <br>
-
-                <form>
-                    <label> Intensity: </label>
-                    <select name="dropdownInt" id="summaryInt" #input placeholder="Filter by Intensity" (input)="summaryIntensity = $event.target.value">
-                        <option id="dropdownAll" selected value="All">All</option>
-                        <option id="dropdown1" value="1">1</option>
-                        <option id="dropdown2" value="2">2</option>
-                        <option id="dropdown3" value="3">3</option>
-                        <option id="dropdown4" value="4">4</option>
-                        <option id="dropdown5" value="5">5</option>
-                    </select>
-                </form>
-                -->
-
                 <mat-form-field class="start">
                     <input
                         id = "startDate"
@@ -85,21 +57,22 @@
                     <mat-card> <mat-card-title class="your-summarys-title">Your Emotions</mat-card-title>
                         <mat-card-subtitle class="your-summarys-title">There are {{totalNumberMoods()}} entries represented</mat-card-subtitle>
                     <canvas id="myChart" height="auto"></canvas>
+
+
                     </mat-card>
 
                 </mat-tab>
                 <mat-tab label="Intensity Review">
-
-
+                    <canvas id="myIntensityChart" height="auto"></canvas>
                 </mat-tab>
 
-                <mat-tab label="List View">
+                <!--<mat-tab label="List View">
 
                     <mat-card> <mat-card-title class="your-summarys-title">Your Emotions</mat-card-title>
 
                         <mat-card-subtitle class="your-summarys-title">You have {{totalNumberMoods()}} emotions to view</mat-card-subtitle>
                         <mat-accordion *ngIf="summarys && myTabGroup.selectedIndex == 1; else summarysError">
-                            <mat-expansion-panel #elem class="summarys" [id]="summary._id" [expanded]="this.isHighlighted(summary)" <!--*ngFor="let summary of this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate)"-->>
+                            <mat-expansion-panel #elem class="summarys" [id]="summary._id" [expanded]="this.isHighlighted(summary)" &lt;!&ndash;*ngFor="let summary of this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate)"&ndash;&gt;>
                                 <mat-expansion-panel-header>
                                     <mat-panel-title id="name">You felt {{summary.mood}} on
                                         {{stringToDate(summary.date).toLocaleDateString()}} at
@@ -122,10 +95,11 @@
                             </mat-error>
                         </ng-template>
                     </mat-card>
-                </mat-tab>
+                </mat-tab>-->
             </mat-tab-group>
             </div>
         </mat-card>
     </div>
 </div>
 </body>
+

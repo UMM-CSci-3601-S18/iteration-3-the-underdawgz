@@ -21,7 +21,6 @@ export class SummaryListComponent implements OnInit {
     canvas: any;
     ctx: any;
     myChart: any;
-
     // These are public so that tests can reference them (.spec.ts)
     public summarys: Summary[];
     public filteredSummarys: Summary[];
@@ -141,14 +140,10 @@ export class SummaryListComponent implements OnInit {
 
     }
 
-    /*getLastWeekDate(){
-        return null;
-    }*/
-
     getRightFormForDate(date: number, month: number, year: number){
-        let mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-        let mon = mons[month]
-        let rightForm = mon+' '+date+' '+year;
+        let mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let mon = mons[month];
+        var rightForm = mon+' '+date+' '+year;
         return rightForm;
     }
 
@@ -258,57 +253,65 @@ export class SummaryListComponent implements OnInit {
                 ],
                 hidden: false,
                 "fill": false,
-                "backgroundColor": "blue",
+                "backgroundColor": "rgb(150, 100, 200)",
                 "borderColor":"rgb(150, 0, 100)",
                 "lineTension": 0.1
             };
-            display_happy_Data = summary_happy_hours;
+
+            this.myChart = new Chart(this.ctx, {
+                type: 'line',
+                data: {
+
+                    labels: type,
+                    datasets: [summary_happy_hours,]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRation: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+
+                            }
+                        }]
+                    }
+                }
+            });
+
+
         }
         else if (this.inputType == "Last week"){
-            /*type = days;
-
-            summaryDays = {
-                "label": "Total Number of Entries",
-                "data": [
-                    this.filterGraph('0'),
-                    this.filterGraph('1'),
-                    this.filterGraph('2'),
-                    this.filterGraph('3'),
-                    this.filterGraph('4'),
-                    this.filterGraph('5'),
-                    this.filterGraph('6'),
-
-                ],
-                "fill": false,
-                "backgroundColor": "blue",
-                "borderColor": "black",
-                "lineTension": 0.1
-            };
-
-            displayData = summaryDays;*/
+            this.myChart = new Chart(this.ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Scatter Dataset',
+                        data: [{
+                            x: -10,
+                            y: 0
+                        }, {
+                            x: 0,
+                            y: 10
+                        }, {
+                            x: 10,
+                            y: -10
+                        }]
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            type: 'linear',
+                            position: 'bottom'
+                        }]
+                    }
+                }
+            });
         }
 
 
-        this.myChart = new Chart(this.ctx, {
-            type: 'line',
-            data: {
 
-                labels: type,
-                datasets: [display_happy_Data,]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRation: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-
-                        }
-                    }]
-                }
-            }
-        });
 
 
 
@@ -443,7 +446,7 @@ export class SummaryListComponent implements OnInit {
         });
 
     }
-
+//
     ngAfterViewInit(): void {
         this.buildChart();
     }
