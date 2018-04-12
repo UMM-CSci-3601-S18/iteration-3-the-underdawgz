@@ -41,7 +41,7 @@ describe('Crisis Page', () => {
         element(by.id('nameField')).sendKeys('Kai Zang');
         element(by.id('emailField')).sendKeys('kai@kai.com');
         element(by.id('phonenumberField')).sendKeys('1234567890');
-        element(by.id('confirmAddcrisisNumbersButton')).click();
+        element(by.id('confirmAddcrisisButton')).click();
         setTimeout(() => {
             expect(page.getUniqueContact('kai@kai.com')).toEqual('Kai Zang');
         }, 10000);

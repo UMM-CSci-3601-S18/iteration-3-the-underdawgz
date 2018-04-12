@@ -30,6 +30,10 @@ export class CrisisPage {
         return title;
     }
 
+    selectEnter() {
+        browser.actions().sendKeys(Key.ENTER).perform();
+    }
+
     getUniqueContact(email: string) {
         const contact = element(by.id(email)).getText();
         this.highlightElement(by.id(email));
@@ -44,12 +48,12 @@ export class CrisisPage {
     }
 
     buttonExists(): promise.Promise<boolean> {
-        this.highlightElement(by.id('addNewResources'));
-        return element(by.id('addNewResources')).isPresent();
+        this.highlightElement(by.id('addNewCrisis'));
+        return element(by.id('addNewCrisis')).isPresent();
     }
 
     clickAddContactButton(): promise.Promise<void> {
-        this.highlightElement(by.id('addNewResources'));
-        return element(by.id('addNewResources')).click();
+        this.highlightElement(by.id('addNewCrisis'));
+        return element(by.id('addNewCrisis')).click();
     }
 }
