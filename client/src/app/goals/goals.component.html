@@ -13,42 +13,96 @@
         <div class="second-sec">
         <mat-card id="mainCard"><mat-card-title id="your-goals" class="your-goals-title">Your Goals</mat-card-title>
             <mat-card-subtitle class="your-goals-title">All of your goals are displayed here.</mat-card-subtitle>
-            <div id="goals tabs">
-                <!--<mat-tab-group> #myGoalsGroup
-                    <mat-tab label="Incomplete">-->
-                        <br>
-                        <div layout="row" layout-wrap>
-                            <mat-card class="goals"
-                                      *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus)"
-                                      #elem [id]="goal._id['$oid']">
+            <div layout-gt-sm="row">
+                <div flex-gt-sm="80" flex-offset-gt-sm="10">
+                    <mat-card>
+                        <mat-card-title id="goal-filtering">Filtering</mat-card-title>
+                        <mat-card-content>
+                            <mat-card>
+                                <mat-card-content>
+                <span id="categoryInput">
 
-                                <mat-card-content class="content"><h2><i>{{goal.name}}</i></h2>
-                                    <i>Category:</i> {{goal.category}}<br>
-                                    <i>Purpose of this goal:</i> {{goal.goal}}<br>
-                                    <i>Status:
-                                        <b *ngIf="goal.status" id="goal-complete">Complete</b>
-                                        <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
-                                    </i>
+                    <!--filter by name box-->
+                    <mat-form-field>
+                        <input matInput id="goalName" #input type="search" placeholder="Search for name" [(ngModel)]="goalName" />
+                        <button mat-button id="nameClearSearch" type="button" *ngIf="goalName" matSuffix mat-icon-button aria-label="clear" (click)="goalName='';loadService()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <!--filter by category box-->
+                    <mat-form-field>
+                        <input matInput id="goalCategory" #input type="search" placeholder="Search for category" [(ngModel)]="goalCategory" />
+                        <button mat-button id="categoryClearSearch" type="button" *ngIf="goalCategory" matSuffix mat-icon-button aria-label="clear" (click)="goalCategory='';loadService()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <button mat-raised-button id="submit" color="primary" #input type="button" (click)="loadService()">Submit</button>
+                </span>
                                 </mat-card-content>
+                            </mat-card>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <div id="goals tabs">
+                <mat-tab-group> #myGoalsGroup
+                    <mat-tab label="Incomplete" id="incomplete">
+                        <br>
+                        <div class="goal-card"
+                            *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus);"
+                            #elem [id]="goal._id['$oid']">
 
-                                <div id="editButton" class="editGoal">
-                                    <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status)">
-                                    <mat-icon id="edit-icon">edit</mat-icon>
-                                    </button>
-                                    <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"
-                                            (click)="goalSatisfied(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status);">
-                                        <mat-icon>done</mat-icon>
-                                    </button>
-                                </div>
+                            <mat-card class="goals"
+                                *ngIf="!goal.status" visibility="hidden">
 
+                                    <mat-card-content class="content"><h2><i>{{goal.name}}</i></h2>
+                                        <i>Category:</i> {{goal.category}}<br>
+                                        <i>Purpose of this goal:</i> {{goal.goal}}<br>
+                                        <i>Status:
+                                            <b *ngIf="!goal.status" id="goal-incomplete" >Incomplete</b>
+                                        </i>
+                                    </mat-card-content>
+
+                                        <div id="editButton" class="editGoal">
+                                            <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status)">
+                                            <mat-icon id="edit-icon">edit</mat-icon>
+                                            </button>
+                                            <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"
+                                                    (click)="goalSatisfied(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status)">
+                                                <mat-icon>done</mat-icon>
+                                            </button>
+                                        </div>
                             </mat-card>
                         </div>
-                    <!--</mat-tab>
-
-                    <mat-tab label="Complete">
-
                     </mat-tab>
-                </mat-tab-group>-->
+
+                    <mat-tab label="Complete" id="complete">
+                        <div class="goal-card"
+                            *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus);"
+                            #elem [id]="goal._id['$oid']">
+
+                            <mat-card class="goals"
+                                      *ngIf="goal.status" visibility="hidden">
+
+                                    <mat-card-content class="content"><h2><i>{{goal.name}}</i></h2>
+                                        <i>Category:</i> {{goal.category}}<br>
+                                        <i>Purpose of this goal:</i> {{goal.goal}}<br>
+                                        <i>Status:
+                                            <b *ngIf="goal.status" id="goal-complete">Complete</b>
+                                        </i>
+                                    </mat-card-content>
+
+                                    <div id="editButton2" class="editGoal">
+                                        <button mat-icon-button (click)="openDialogEdit(goal._id['$oid'], goal.goal, goal.category, goal.name, goal.status)">
+                                            <mat-icon id="edit-icon2">edit</mat-icon>
+                                        </button>
+                                    </div>
+                            </mat-card>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
 
 

@@ -105,6 +105,6 @@ h2{
     font-size: 80%;
 }
 
-
-
-
+.goal-card{
+    display: inline;
+}
