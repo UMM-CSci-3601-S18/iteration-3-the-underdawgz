@@ -20,13 +20,24 @@
                         <mat-card-content>
                             <mat-card>
                                 <mat-card-content>
-                <span id="ownerInput">
+                <span id="categoryInput">
+
+                    <!--filter by name box-->
                     <mat-form-field>
-                        <input matInput id="goalCategory" #input type="search" placeholder="Search for category" [(ngModel)]="goalCategory" />
-                        <button mat-button id="ownerClearSearch" type="button" *ngIf="goalCategory" matSuffix mat-icon-button aria-label="clear" (click)="todoOwner='';loadService()">
+                        <input matInput id="goalName" #input type="search" placeholder="Search for name" [(ngModel)]="goalName" />
+                        <button mat-button id="nameClearSearch" type="button" *ngIf="goalName" matSuffix mat-icon-button aria-label="clear" (click)="goalName='';loadService()">
                             <mat-icon>close</mat-icon>
                         </button>
                     </mat-form-field>
+
+                    <!--filter by category box-->
+                    <mat-form-field>
+                        <input matInput id="goalCategory" #input type="search" placeholder="Search for category" [(ngModel)]="goalCategory" />
+                        <button mat-button id="categoryClearSearch" type="button" *ngIf="goalCategory" matSuffix mat-icon-button aria-label="clear" (click)="goalCategory='';loadService()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+
                     <button mat-raised-button id="submit" color="primary" #input type="button" (click)="loadService()">Submit</button>
                 </span>
                                 </mat-card-content>
