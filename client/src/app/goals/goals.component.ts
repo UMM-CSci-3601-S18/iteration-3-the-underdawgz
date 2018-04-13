@@ -57,8 +57,8 @@ export class GoalsComponent implements OnInit {
         });
     }
 
-    openDialogEdit(_id: string, goal: string, category: string, name: string): void {
-        const newGoal: Goal = {_id: _id, goal: goal, category: category, name: name,status: false};
+    openDialogEdit(_id: string, name: string, category: string, goal: string): void {
+        const newGoal: Goal = {_id: _id, name: name, category: category, goal: goal, status: false};
         const dialogRef = this.dialog.open(EditGoalComponent, {
             width: '500px',
             data: { goal : newGoal }

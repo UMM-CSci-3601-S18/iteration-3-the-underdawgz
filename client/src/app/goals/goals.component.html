@@ -59,7 +59,7 @@
                     <mat-tab label="Incomplete" id="incomplete">
                         <br>
                         <div class="goal-card"
-                            *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus);"
+                            *ngFor="let goal of this.filterGoals(goalName, goalCategory, goalGoal, goalStatus);"
                             #elem [id]="goal._id['$oid']">
 
                             <mat-card class="goals"
@@ -88,7 +88,7 @@
 
                     <mat-tab label="Complete" id="complete">
                         <div class="goal-card"
-                            *ngFor="let goal of this.filterGoals(goalGoal, goalCategory, goalName, goalStatus);"
+                            *ngFor="let goal of this.filterGoals(goalName, goalCategory, goalGoal, goalStatus);"
                             #elem [id]="goal._id['$oid']">
 
                             <mat-card class="goals"
