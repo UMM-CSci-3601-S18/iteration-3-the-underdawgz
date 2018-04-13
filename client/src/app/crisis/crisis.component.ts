@@ -4,6 +4,7 @@ import {crisis} from './crisis';
 import {CrisisService} from "./crisis.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddCrisisComponent} from "./add-crisis.component";
+import {EditCrisisComponent} from "./edit-crisis.component";
 
 @Component({
     selector: 'crisis-component',
@@ -19,10 +20,15 @@ export class CrisisComponent implements OnInit{
     // We should rename them to make that clearer.
     public crisisName: string;
 
+    private highlightedID: {'$oid': string} = { '$oid': '' };
+
 
     // Inject the ResourcesListService into this component.
     constructor(public crisisService: CrisisService, public dialog: MatDialog) {
 
+    }
+    isHighlighted(crisis: crisis): boolean {
+        return crisis._id['$oid'] === this.highlightedID['$oid'];
     }
 
     openDialog(): void {
@@ -35,11 +41,33 @@ export class CrisisComponent implements OnInit{
         dialogRef.afterClosed().subscribe(result => {
             this.crisisService.addCrisis(result).subscribe(
                 addCrisisResult => {
+                    this.highlightedID = addCrisisResult;
                     this.refreshCrisis();
                 },
                 err => {
                     // This should probably be turned into some sort of meaningful response.
                     console.log('There was an error adding the crisisNumber.');
+                    console.log('The error was ' + JSON.stringify(err));
+                });
+        });
+    }
+
+    openDialogReview(_id: string, name: string, email: string, phone: string): void {
+        console.log(_id + ' ' + name);
+        const newCrisis: crisis = {_id: _id, name: name, email: email, phone: phone};
+        const dialogRef = this.dialog.open(EditCrisisComponent, {
+            width: '500px',
+            data: {crisis: newCrisis}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            this.crisisService.editCrisis(result).subscribe(
+                editCrisisResult => {
+                    this.highlightedID = editCrisisResult;
+                    this.refreshCrisis();
+                },
+                err => {
+                    // This should probably be turned into some sort of meaningful response.
+                    console.log('There was an error editing the crisis.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
         });

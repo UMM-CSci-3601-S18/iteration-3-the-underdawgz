@@ -62,6 +62,32 @@ public class CrisisController {
         return JSON.serialize(matchingCrisis);
     }
 
+    public String editCrisis(String id, String name, String email, String phone){
+        System.out.println("Right here again");
+        Document newCrisis = new Document();
+        newCrisis.append("name", name);
+        newCrisis.append("email", email);
+        newCrisis.append("phone", phone);
+        Document setQuery = new Document();
+        setQuery.append("$set", newCrisis);
+
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+
+        System.out.println(id);
+
+
+
+        try {
+            crisisCollection.updateOne(searchQuery, setQuery);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.err.println("Successfully updated journal [_id=" + id1 + ", name=" + name + ", email=" + email + ",phone=" + phone + ']');
+            return JSON.serialize(id1);
+        } catch(MongoException me) {
+            me.printStackTrace();
+            return null;
+        }
+    }
+
 
     public String addNewCrisis(String id, String name, String email, String phone) {
         System.out.println("Adding new crisis " + name);

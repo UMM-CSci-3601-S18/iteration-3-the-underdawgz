@@ -107,4 +107,46 @@ public class CrisisRequestHandler {
             return null;
         }
     }
+
+    public String editCrisis(Request req, Response res)
+    {
+        System.out.println("Right here");
+        res.type("application/json");
+        Object o = JSON.parse(req.body());
+        try {
+            if(o.getClass().equals(BasicDBObject.class))
+            {
+                try {
+                    BasicDBObject dbO = (BasicDBObject) o;
+
+                    String id = dbO.getString("_id");
+                    String name = dbO.getString("name");
+                    String email = dbO.getString("email");
+                    String phone = dbO.getString("phone");
+
+
+
+                    System.err.println("Editing crisis [ id=" + id + ", name=" + name + ", email=" + email + ",phone=" + phone + ']');
+                    return crisisController.editCrisis(id, name, email, phone).toString();
+                }
+                catch(NullPointerException e)
+                {
+                    System.err.println("A value was malformed or omitted, new crisis request failed.");
+                    return null;
+                }
+
+            }
+            else
+            {
+                System.err.println("Expected BasicDBObject, received " + o.getClass());
+                return null;
+            }
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
+
 }

@@ -35,6 +35,7 @@ import {CrisisComponent} from "./crisis/crisis.component";
 import {CrisisService} from "./crisis/crisis.service";
 import {AddCrisisComponent} from "./crisis/add-crisis.component";
 import {CrisisButtonComponent} from "./crisis/crisis-button.component";
+import {EditCrisisComponent} from "./crisis/edit-crisis.component";
 
 @NgModule({
     imports: [
@@ -62,6 +63,7 @@ import {CrisisButtonComponent} from "./crisis/crisis-button.component";
         CrisisComponent,
         AddCrisisComponent,
         CrisisButtonComponent,
+        EditCrisisComponent,
 
         EmotionResponseHappyComponent,
         EmotionResponseSadComponent,
@@ -91,7 +93,8 @@ import {CrisisButtonComponent} from "./crisis/crisis-button.component";
         EmotionResponseScaredComponent,
         EmotionResponseAnxiousComponent,
         AddJournalComponent,
-        CrisisButtonComponent
+        CrisisButtonComponent,
+        EditCrisisComponent,
     ],
     bootstrap: [AppComponent]
 })
