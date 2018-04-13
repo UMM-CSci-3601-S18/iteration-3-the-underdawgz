@@ -27,9 +27,17 @@ import {EmotionResponseAnxiousComponent} from "./home/emotion-response-anxious.c
 import {SummaryListComponent} from "./summary/summary-list.component";
 import {SummaryListService} from "./summary/summary-list.service";
 
+
+
 import {JournalsComponent} from "./Journal/journals.component";
 import {AddJournalComponent} from "./Journal/add-journal.component";
 import {JournalsService} from "./Journal/journals.service";
+
+
+import {ResourcesComponent} from "./resources/resources.component";
+import {AddResourceComponent} from "./resources/add-resource.component";
+import {ResourcesService} from "./resources/resources.service";
+
 
 @NgModule({
     imports: [
@@ -42,12 +50,13 @@ import {JournalsService} from "./Journal/journals.service";
         AppComponent,
         HomeComponent,
         ResourcesComponent,
+        AddResourceComponent,
 
         GoalsComponent,
         AddGoalComponent,
 
         JournalsComponent,
-        AddJournalComponent,
+       AddJournalComponent,
 
         EditGoalComponent,
         SummaryListComponent,
@@ -61,6 +70,7 @@ import {JournalsService} from "./Journal/journals.service";
     providers: [
     GoalsService,
     JournalsService,
+    ResourcesService,
     EmotionService,
     SummaryListService,
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -76,7 +86,14 @@ import {JournalsService} from "./Journal/journals.service";
         EmotionResponseMadComponent,
         EmotionResponseScaredComponent,
         EmotionResponseAnxiousComponent,
-        AddJournalComponent
+        AddJournalComponent,
+
+        AddResourceComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
+        EmotionResponseAnxiousComponent
+
     ],
     bootstrap: [AppComponent]
 })
