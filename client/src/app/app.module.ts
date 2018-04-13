@@ -8,7 +8,7 @@ import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 
-import {ResourcesComponent} from "./resources/resources.component";
+
 
 import {EmotionService} from "./home/home.service";
 
@@ -27,16 +27,13 @@ import {EmotionResponseAnxiousComponent} from "./home/emotion-response-anxious.c
 import {SummaryListComponent} from "./summary/summary-list.component";
 import {SummaryListService} from "./summary/summary-list.service";
 
-
-
 import {JournalsComponent} from "./Journal/journals.component";
 import {AddJournalComponent} from "./Journal/add-journal.component";
 import {JournalsService} from "./Journal/journals.service";
 
-
-import {ResourcesComponent} from "./resources/resources.component";
 import {AddResourceComponent} from "./resources/add-resource.component";
 import {ResourcesService} from "./resources/resources.service";
+import {ResourcesComponent} from "./resources/resources.component";
 
 
 @NgModule({
@@ -56,7 +53,7 @@ import {ResourcesService} from "./resources/resources.service";
         AddGoalComponent,
 
         JournalsComponent,
-       AddJournalComponent,
+        AddJournalComponent,
 
         EditGoalComponent,
         SummaryListComponent,
