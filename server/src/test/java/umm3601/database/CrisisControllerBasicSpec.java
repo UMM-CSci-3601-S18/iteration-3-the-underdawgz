@@ -52,6 +52,9 @@ public class CrisisControllerBasicSpec {
         flora = flora.append("name", "Flora Hull")
             .append("email", "Daniel@ Bass.com")
             .append("phone", "(922) 486-2948");
+
+
+
         crisisDocument.insertMany(testCrisis);
         crisisDocument.insertOne(Document.parse(flora.toJson()));
 
@@ -60,6 +63,7 @@ public class CrisisControllerBasicSpec {
         // of the database.
         crisisController = new CrisisController(db);
     }
+
     private BsonArray parseJsonArray(String json) {
         final CodecRegistry codecRegistry
             = CodecRegistries.fromProviders(Arrays.asList(
@@ -85,6 +89,7 @@ public class CrisisControllerBasicSpec {
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 crisis", 4, docs.size());
+        assertEquals("Should be 4 resources", 4, docs.size());
         List<String> names = docs
             .stream()
             .map(CrisisControllerBasicSpec::getName)
@@ -111,6 +116,7 @@ public class CrisisControllerBasicSpec {
         String newId = crisisController.addNewCrisis("5ab2bc37e194ff1f2434eb65","Flora Hull2","Daniel@ Bass.com","(922) 486-2948");
 
         assertNotNull("Add new crisis should return true when an crisis is added,", newId);
+        assertNotNull("Add new crisisNumber should return true when an crisisNumber is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
         argMap.put("name", new String[] { "Flora Hull2" });
         String jsonResult = crisisController.getCrisis(argMap);
@@ -133,6 +139,18 @@ public class CrisisControllerBasicSpec {
         String jsonResult = crisisController.getResources(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
         assertEquals("Should be one crisis entry", 1, docs.size());
+        /*assertEquals("Should return the owner of the new resource", "Flora Hull2", name.get(1));
+    */}
+
+   /* Future iteration test for filtering resources by name if so desired.
+     //@Test
+    public void getResourcesByName(){
+        Map<String, String[]> argMap = new HashMap<>();
+        //This will search for resources owned by Kyle
+        argMap.put("name", new String[] { "Hayden Cain" });
+        String jsonResult = resourceController.getResources(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+        assertEquals("Should be one resource entry", 1, docs.size());
         List<String> name = docs
             .stream()
             .map(ResourcesControllerSpec::getName)
@@ -142,4 +160,5 @@ public class CrisisControllerBasicSpec {
         assertEquals("Names should match", expectedName, name);
 
     }*/
+
 }
