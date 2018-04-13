@@ -64,6 +64,7 @@ public class CrisisControllerBasicSpec {
         crisisController = new CrisisController(db);
     }
 
+    // http://stackoverflow.com/questions/34436952/json-parse-equivalent-in-mongo-driver-3-x-for-java
     private BsonArray parseJsonArray(String json) {
         final CodecRegistry codecRegistry
             = CodecRegistries.fromProviders(Arrays.asList(
@@ -88,7 +89,6 @@ public class CrisisControllerBasicSpec {
         String jsonResult = crisisController.getCrisis(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 4 crisis", 4, docs.size());
         assertEquals("Should be 4 resources", 4, docs.size());
         List<String> names = docs
             .stream()
@@ -115,8 +115,7 @@ public class CrisisControllerBasicSpec {
     public void addCrisisTest(){
         String newId = crisisController.addNewCrisis("5ab2bc37e194ff1f2434eb65","Flora Hull2","Daniel@ Bass.com","(922) 486-2948");
 
-        assertNotNull("Add new crisis should return true when an crisis is added,", newId);
-        assertNotNull("Add new crisisNumber should return true when an crisisNumber is added,", newId);
+        assertNotNull("Add new resource should return true when an resource is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
         argMap.put("name", new String[] { "Flora Hull2" });
         String jsonResult = crisisController.getCrisis(argMap);
@@ -127,18 +126,6 @@ public class CrisisControllerBasicSpec {
             .map(CrisisControllerBasicSpec::getName)
             .sorted()
             .collect(Collectors.toList());
-        /*assertEquals("Should return the owner of the new crisis", "Flora Hull2", name.get(1));
-    */}
-
-   /* Future iteration test for filtering crisis by name if so desired.
-     //@Test
-    public void getResourcesByName(){
-        Map<String, String[]> argMap = new HashMap<>();
-        //This will search for crisis owned by Kyle
-        argMap.put("name", new String[] { "Hayden Cain" });
-        String jsonResult = crisisController.getResources(argMap);
-        BsonArray docs = parseJsonArray(jsonResult);
-        assertEquals("Should be one crisis entry", 1, docs.size());
         /*assertEquals("Should return the owner of the new resource", "Flora Hull2", name.get(1));
     */}
 
@@ -160,5 +147,6 @@ public class CrisisControllerBasicSpec {
         assertEquals("Names should match", expectedName, name);
 
     }*/
+
 
 }
