@@ -25,6 +25,12 @@ describe('Goal list', () => {
         page = new GoalPage();
     });
 
+    it('should check if both of the tabs are there', () => {
+        GoalPage.navigateTo();
+        expect(element(by.id('complete'))).toBeDefined();
+        expect(element(by.id('incomplete'))).toBeDefined();
+    });
+
     it('should get and highlight Goals title attribute ', () => {
         GoalPage.navigateTo();
         expect(page.getGoalTitle()).toEqual('Your Goals');
