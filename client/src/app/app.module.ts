@@ -8,7 +8,7 @@ import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 
-import {ResourcesComponent} from "./resources/resources.component";
+
 
 import {EmotionService} from "./home/home.service";
 
@@ -31,6 +31,11 @@ import {JournalsComponent} from "./Journal/journals.component";
 import {AddJournalComponent} from "./Journal/add-journal.component";
 import {JournalsService} from "./Journal/journals.service";
 
+import {AddResourceComponent} from "./resources/add-resource.component";
+import {ResourcesService} from "./resources/resources.service";
+import {ResourcesComponent} from "./resources/resources.component";
+
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -42,6 +47,7 @@ import {JournalsService} from "./Journal/journals.service";
         AppComponent,
         HomeComponent,
         ResourcesComponent,
+        AddResourceComponent,
 
         GoalsComponent,
         AddGoalComponent,
@@ -61,6 +67,7 @@ import {JournalsService} from "./Journal/journals.service";
     providers: [
     GoalsService,
     JournalsService,
+    ResourcesService,
     EmotionService,
     SummaryListService,
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -76,7 +83,14 @@ import {JournalsService} from "./Journal/journals.service";
         EmotionResponseMadComponent,
         EmotionResponseScaredComponent,
         EmotionResponseAnxiousComponent,
-        AddJournalComponent
+        AddJournalComponent,
+
+        AddResourceComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
+        EmotionResponseAnxiousComponent
+
     ],
     bootstrap: [AppComponent]
 })
