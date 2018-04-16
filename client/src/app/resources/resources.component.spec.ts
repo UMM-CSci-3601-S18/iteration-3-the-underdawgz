@@ -62,28 +62,57 @@ describe('Resource ', () => {
         });
     }));
 
-    it('contains all the Resources', () => {
-        expect(Resource.resources.length).toBe(3);
-    });
-
-    it
-
-    it('contain a Resource id \'2\'', () => {
-        expect(Resource.resources.some((Resource: Resource) => Resource._id === '2')).toBe(true);
-    });
-
-    it('doesn\'t contain a Resource id \'4\'', () => {
-        expect(Resource.resources.some((Resource: Resource) => Resource._id === '4')).toBe(false);
-    });
-
-
-
-
 
 
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 describe('Misbehaving Resource ', () => {
     let Resource: ResourcesComponent;
@@ -122,6 +151,28 @@ describe('Misbehaving Resource ', () => {
         expect(Resource.resources).toBeUndefined();
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 describe('Adding a Resource', () => {
@@ -194,3 +245,4 @@ describe('Adding a Resource', () => {
 });
 
 
+*/
