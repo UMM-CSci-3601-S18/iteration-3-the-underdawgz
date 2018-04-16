@@ -95,8 +95,8 @@ public class ResourceControllerBasicSpec {
         assertEquals("Names should match", expectedNames, resources);
     }
 
-    @Test
-    public void getResourceByName(){
+  /*  @Test
+   public void getResourceByName(){
         Map<String, String[]> argMap = new HashMap<>();
         // Mongo in resourceController is doing a regex search so can just take a Java Reg. Expression
         // This will search the category for letters 'f' and 'c'.
@@ -111,5 +111,5 @@ public class ResourceControllerBasicSpec {
             .collect(Collectors.toList());
         List<String> expectedName = Arrays.asList("d");
         assertEquals("Names should match", expectedName, name);
-    }
+    }*/
 }

@@ -3,7 +3,7 @@
 An emotion tracking web application which can be used by health practioners and their consumers.
 Provides ability for consumers to quickly log data about emotion and mood, and provides convenient, helpful links.
 
-[![Build Status](https://travis-ci.org/UMM-CSci-3601-S18/iteration-3-the-underdawgz.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S18/iteration-3-the-underdawgz.svg?branch=master)
+[![Build Status](https://travis-ci.org/UMM-CSci-3601-S18/iteration-3-the-underdawgz.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S18/iteration-3-the-underdawgz)
 
 
 <!-- TOC depthFrom:1 depthTo:5 withLinks:1 updateOnSave:1 orderedList:0 -->
@@ -85,12 +85,13 @@ need to have data in the `dev` database before running the e2e tests!
 * `runServerTests` runs the server tests.
 
 ## Authors
-- **Travis Warling** 
-- **Xaitheng Yang** 
-- **Charles Menne** 
+- **Jubair Hassan**
 - **Abenezer Monjor** 
-- **Hunter Welch** 
-- **Jubair Hassan** 
+- **Hunter Welch**
+- **Yukai Zang** 
+- **Sunjae Park** 
+ 
+ 
 
 
 [angular-karma-jasmine]: https://codecraft.tv/courses/angular/unit-testing/jasmine-and-karma/

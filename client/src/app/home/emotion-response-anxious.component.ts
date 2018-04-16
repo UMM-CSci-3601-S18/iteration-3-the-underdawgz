@@ -1,8 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Resource} from './resource';
-import {Observable} from 'rxjs/Observable';
+ import {ResourceEmotion} from './resourceEmotion';
+ import {Observable} from 'rxjs/Observable';
 
 import {environment} from '../../environments/environment';
 

@@ -8,7 +8,7 @@ import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 
-import {ResourcesComponent} from "./resources/resources.component";
+
 
 import {EmotionService} from "./home/home.service";
 
@@ -37,6 +37,11 @@ import {AddCrisisComponent} from "./crisis/add-crisis.component";
 import {CrisisButtonComponent} from "./crisis/crisis-button.component";
 import {EditCrisisComponent} from "./crisis/edit-crisis.component";
 
+import {AddResourceComponent} from "./resources/add-resource.component";
+import {ResourcesService} from "./resources/resources.service";
+import {ResourcesComponent} from "./resources/resources.component";
+
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -48,6 +53,7 @@ import {EditCrisisComponent} from "./crisis/edit-crisis.component";
         AppComponent,
         HomeComponent,
         ResourcesComponent,
+        AddResourceComponent,
 
         GoalsComponent,
         AddGoalComponent,
@@ -74,6 +80,7 @@ import {EditCrisisComponent} from "./crisis/edit-crisis.component";
     providers: [
     GoalsService,
     JournalsService,
+    ResourcesService,
     EmotionService,
         CrisisService,
     SummaryListService,
@@ -95,6 +102,14 @@ import {EditCrisisComponent} from "./crisis/edit-crisis.component";
         AddJournalComponent,
         CrisisButtonComponent,
         EditCrisisComponent,
+        AddJournalComponent,
+
+        AddResourceComponent,
+        EmotionResponseSadComponent,
+        EmotionResponseMadComponent,
+        EmotionResponseScaredComponent,
+        EmotionResponseAnxiousComponent
+
     ],
     bootstrap: [AppComponent]
 })
