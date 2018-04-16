@@ -1,4 +1,4 @@
-body {
+body, .second-sec {
     background-color: #813772;
 }
 
@@ -12,9 +12,6 @@ body {
 
 #add-icon{
     font-size: 80%;
-}
-
-.goal-button{
 }
 
 .goal-title {
@@ -61,8 +58,7 @@ body {
 .goals{
     width: 30%;
     display: inline-block;
-    /*text-align: center;*/
-    margin: 0 auto;
+    margin: 1px;
     padding: 1%;
     background-color: silver;
     border-width: 2px;
@@ -77,10 +73,6 @@ body {
 
 #mainCard{
     padding: 2%;
-    border-width: 5px;
-    border-color: black;
-    border-style: solid;
-
 }
 
 h2{
