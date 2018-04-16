@@ -1,18 +1,4 @@
-.main-top {
-    height: 100px;
-    color: white;
-    background-color: #ee6e73;
-    width: 100%;
-    font-size: 36px;
-    font-family: Roboto, sans-serif;
-    font-weight: normal;
-    line-height: 100px;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
-}
-
-.whole-body {
+body {
     background-color: #813772;
 }
 
@@ -111,4 +97,16 @@ h2{
 
 #categoryInput, #title{
     float: inherit;
+}
+
+@media screen and (max-width: 600px) {
+    #search-box #submit{
+        columns: auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .goals{
+        min-width: 100%;
+    }
 }
