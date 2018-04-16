@@ -1,3 +1,4 @@
+
 import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {Resource} from "./resource";
 import {ResourcesComponent} from "./resources.component";
@@ -61,19 +62,21 @@ describe('Resource ', () => {
         });
     }));
 
-  /*  it('contains all the Resources', () => {
+    it('contains all the Resources', () => {
         expect(Resource.resources.length).toBe(3);
     });
 
+    it
 
     it('contain a Resource id \'2\'', () => {
         expect(Resource.resources.some((Resource: Resource) => Resource._id === '2')).toBe(true);
     });
- // failed
-    it('doesn\'t contain a Resource id \'abc\'', () => {
-        expect(Resource.resources.some((Resource: Resource) => Resource._id === 'abc')).toBe(false);
-    });*/
- //failed
+
+    it('doesn\'t contain a Resource id \'4\'', () => {
+        expect(Resource.resources.some((Resource: Resource) => Resource._id === '4')).toBe(false);
+    });
+
+
 
 
 
@@ -114,14 +117,14 @@ describe('Misbehaving Resource ', () => {
         });
     }));
 
-    /*it('generates an error if we don\'t set up a ResourceService', () => {
+    it('generates an error if we don\'t set up a ResourceService', () => {
         // Since the observer throws an error, we don't expect Resources to be defined.
         expect(Resource.resources).toBeUndefined();
-    }); */ //failing
+    });
 });
 
 
-/*describe('Adding a Resource', () => {
+describe('Adding a Resource', () => {
     let Resource: ResourcesComponent;
     let fixture: ComponentFixture<ResourcesComponent>;
     const newResource: Resource = {
@@ -131,7 +134,7 @@ describe('Misbehaving Resource ', () => {
     };
     const newId = '5';
 
-    let calledResource: Resource;
+    let calledResources: Resource;
 
     let ResourceServiceStub: {
         getResources: () => Observable<Resource[]>,
@@ -144,12 +147,12 @@ describe('Misbehaving Resource ', () => {
     };
 
     beforeEach(() => {
-        calledResource = null;
+        calledResources = null;
         // stub ResourceService for test purposes
         ResourceServiceStub = {
             getResources: () => Observable.of([]),
             addNewResource: (ResourceToAdd: Resource) => {
-                calledResource = ResourceToAdd;
+                calledResources = ResourceToAdd;
                 return Observable.of({
                     '$oid': newId
                 });
@@ -184,10 +187,10 @@ describe('Misbehaving Resource ', () => {
     }));
 
     it('calls ResourceService.addResource', () => {
-        expect(calledResource).toBeNull();
+        expect(calledResources).toBeNull();
         Resource.openDialog();
-        expect(calledResource).toEqual(newResource);
+        expect(calledResources).toEqual(newResource);
     });
-});*/
+});
 
 

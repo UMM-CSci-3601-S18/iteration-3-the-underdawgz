@@ -79,15 +79,7 @@ describe('Resource service: ', () => {
         req.flush(testResources);
     });
 
-   /* it('getResources(resourceLink) adds appropriate param string to called URL', () => {
-        resourceService.getResource('o').subscribe(
-            resources => expect(resources).toEqual(resources)
-        );
 
-        const req = httpTestingController.expectOne(resourceService.baseUrl + '?link=o&');
-        expect(req.request.method).toEqual('GET');
-        req.flush(resources);
-    });*/ // falling
 
 
 
