@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ResourceEmotion} from './resourceEmotion';
 import {Observable} from 'rxjs/Observable';
 
+
 import {environment} from '../../environments/environment';
 
 @Component({
