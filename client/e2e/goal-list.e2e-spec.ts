@@ -106,5 +106,36 @@ describe('Goal list', () => {
         element(by.id('exitWithoutAddingButton')).click();
     });
 
+    it('Should search for a title with the information we put in the fields', () => {
+        GoalPage.navigateTo();
+        //page.clickEditGoalButton();
+        //element(by.id('nameField')).clear();
+        element(by.id('goalGoal')).sendKeys('call my');
+        expect(element(by.id('goalGoal')).isPresent()).toBeTruthy('There should be a name field');
+        /*setTimeout(() => {
+            expect(page.getUniqueGoal('Work for 10 hours')).toMatch('Work for 10 hours');
+        }, 10000);*/
+    });
 
+    it('Should search for a category with the information we put in the fields', () => {
+        GoalPage.navigateTo();
+        //page.clickEditGoalButton();
+        //element(by.id('nameField')).clear();
+        element(by.id('goalCategory')).sendKeys('family');
+        expect(element(by.id('goalCategory')).isPresent()).toBeTruthy('There should be a name field');
+        /*setTimeout(() => {
+            expect(page.getUniqueGoal('Work for 10 hours')).toMatch('Work for 10 hours');
+        }, 10000);*/
+    });
+
+    it('Should search for a purpose with the information we put in the fields', () => {
+        GoalPage.navigateTo();
+        //page.clickEditGoalButton();
+        //element(by.id('nameField')).clear();
+        element(by.id('goalName')).sendKeys('get some more sleep');
+        expect(element(by.id('goalName')).isPresent()).toBeTruthy('There should be a name field');
+        /*setTimeout(() => {
+            expect(page.getUniqueGoal('Work for 10 hours')).toMatch('Work for 10 hours');
+        }, 10000);*/
+    });
 });

@@ -21,8 +21,8 @@
 
                     <!--filter by name search box-->
                     <mat-form-field>
-                        <input matInput id="goalName" #input type="search" placeholder="Search for name" [(ngModel)]="goalName" />
-                        <button mat-button id="nameClearSearch" type="button" *ngIf="goalName" matSuffix mat-icon-button aria-label="clear" (click)="goalName='';loadService()">
+                        <input matInput id="goalGoal" #input type="search" placeholder="Search for title" [(ngModel)]="goalGoal" />
+                        <button mat-button id="goalClearSearch" type="button" *ngIf="goalGoal" matSuffix mat-icon-button aria-label="clear" (click)="goalGoal='';loadService()">
                             <mat-icon>close</mat-icon>
                         </button>
                     </mat-form-field>
@@ -37,8 +37,8 @@
 
                     <!--filter by goal search box-->
                     <mat-form-field>
-                        <input matInput id="goalGoal" #input type="search" placeholder="Search for purpose" [(ngModel)]="goalGoal" />
-                        <button mat-button id="goalClearSearch" type="button" *ngIf="goalGoal" matSuffix mat-icon-button aria-label="clear" (click)="goalGoal='';loadService()">
+                        <input matInput id="goalName" #input type="search" placeholder="Search for purpose" [(ngModel)]="goalName" />
+                        <button mat-button id="nameClearSearch" type="button" *ngIf="goalName" matSuffix mat-icon-button aria-label="clear" (click)="goalName='';loadService()">
                             <mat-icon>close</mat-icon>
                         </button>
                     </mat-form-field>
