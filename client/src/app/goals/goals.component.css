@@ -108,3 +108,7 @@ h2{
 .goal-card{
     display: inline;
 }
+
+#categoryInput, #title{
+    float: inherit;
+}

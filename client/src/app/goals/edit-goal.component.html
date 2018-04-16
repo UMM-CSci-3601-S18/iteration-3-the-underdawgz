@@ -5,13 +5,13 @@
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-form-field>
-                    <input matInput #input id="nameField" placeholder="What is your new goal?" [(ngModel)]="data.goal.name">
+                    <input matInput #input id="nameField" placeholder="What is your new goal?" [(ngModel)]="data.goal.goal">
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput #input id="categoryField" placeholder="What category is this?" [(ngModel)]="data.goal.category">
                 </mat-form-field>
                 <mat-form-field>
-                    <textarea matInput matTextareaAutosize #input id="purposeField" placeholder="What is the purpose?" [(ngModel)]="data.goal.goal"></textarea>
+                    <textarea matInput matTextareaAutosize #input id="purposeField" placeholder="What is the purpose?" [(ngModel)]="data.goal.name"></textarea>
                 </mat-form-field>
             </mat-card-content>
         </mat-card>
