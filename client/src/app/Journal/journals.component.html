@@ -45,7 +45,7 @@
                        <div layout="row" layout-wrap>
                         <mat-card #elem class="journals" [id]="journal.title" *ngFor="let journal of this.filterJournals( journalTitle,journalBody,journalDate)">
                             <mat-panel-description id="titleContent"><Strong><i>{{journal.title}}</i></Strong></mat-panel-description><br>
-                            <mat-panel-description id="dateContent">{{journal.date}}</mat-panel-description>
+                            <!--<mat-panel-description id="dateContent">{{journal.date}}</mat-panel-description>-->
                                    <br>
                                        <br>
                                    <mat-panel-description id="bodyContent">{{journal.body}}</mat-panel-description>

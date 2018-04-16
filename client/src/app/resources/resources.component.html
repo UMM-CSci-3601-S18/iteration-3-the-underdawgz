@@ -100,26 +100,14 @@
 
 
 
-
-
-
-
-
-
         <div style="height:300px;border:1px solid #ccc;font:16px/16px Georgia, Garamond, Serif;overflow:auto;">
                <mat-list #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)"
                          #elem [id]="resource._id['$oid']">
-
-
-            <a href="{{resource.link}}" target="_blank">{{resource.title}} </a>
-
-
-                   <button mat-icon-button class="button delete-button"
+          <a href="{{resource.link}}" target="_blank">{{resource.title}} </a>
+                 <button mat-icon-button class="button delete-button"
                            (click)="deleteResource(resource._id['$oid'])">
                        <mat-icon>delete</mat-icon>
                    </button>
-
-
 
                </mat-list>
 
@@ -135,20 +123,11 @@
                     </mat-error>
                 </ng-template>
 
-
-
             <mat-divider></mat-divider>
 
     </mat-card>
 
-
-
-
     </div>
-
-
-
-
 
 </div>
 </main>
