@@ -1,5 +1,5 @@
-import {browser, element, by, promise} from 'protractor';
-import {Key} from 'selenium-webdriver';
+import {browser, element, by, promise, Key} from 'protractor';
+/*import {Key} from 'selenium-webdriver';*/
 
 export class GoalPage {
     static navigateTo(): promise.Promise<any> {
@@ -58,5 +58,4 @@ export class GoalPage {
         this.highlightElement(by.id('edit-icon'));
         return element(by.id('edit-icon')).isPresent();
     }
-
 }

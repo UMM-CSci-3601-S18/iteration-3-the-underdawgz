@@ -1,11 +1,9 @@
-/*
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {TestBed} from '@angular/core/testing';
 import {HttpClient} from '@angular/common/http';
 
 import {Goal} from './goal';
 import {GoalsService} from './goals.service';
-import {GoalsComponent} from "./goals.component";
 
 describe('Goal service: ', () => {
     // A small collection of test goals
@@ -16,18 +14,21 @@ describe('Goal service: ', () => {
             goal: 'To have a more sanitary living environment.',
             category: 'Chores',
             name: 'Wash the dishes',
+            status: true,
         },
         {
             _id: '2',
             goal: 'To be beefy.',
             category: 'Workout',
             name: 'Go to gym',
+            status: false,
         },
         {
             _id: '3',
             goal: 'To have a safer driveway.',
             category: 'Chores',
             name: 'Shovel driveway',
+            status: true,
         }
     ];
     const mGoals: Goal[] = testGoals.filter(goal =>
@@ -134,6 +135,7 @@ describe('Goal service: ', () => {
             goal: 'To have a safer driveway.',
             category: 'Chores',
             name: 'Shovel driveway',
+            status: false
         };
 
         goalService.addNewGoal(newGoal).subscribe(
@@ -148,7 +150,7 @@ describe('Goal service: ', () => {
         req.flush(jesse_id);
     });
 
-    it('editing a goal calls api/goals/edit', () => {
+    /*it('editing a goal calls api/goals/edit', () => {
         const gymId = testGoals[0]._id;
 
         goalService.editGoal(gymId).subscribe();
@@ -157,8 +159,5 @@ describe('Goal service: ', () => {
         const req = httpTestingController.expectOne(expectedUrl);
         expect(req.request.method).toEqual('POST');
         req.flush(gymId);
-    });
-
-
+    });*/
 });
-*/

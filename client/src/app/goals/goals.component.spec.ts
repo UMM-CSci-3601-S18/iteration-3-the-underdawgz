@@ -1,4 +1,3 @@
-/*
 import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {Goal} from './goal';
 import {GoalsComponent} from './goals.component';
@@ -30,18 +29,21 @@ describe('Goal ', () => {
                     goal: 'To have a more sanitary living environment.',
                     category: 'Chores',
                     name: 'Wash the dishes',
+                    status: true
                 },
                 {
                     _id: '2',
                     goal: 'To be beefy.',
                     category: 'Workout',
                     name: 'Go to gym',
+                    status: true,
                 },
                 {
                     _id: '3',
                     goal: 'To have a safer driveway.',
                     category: 'Chores',
                     name: 'Shovel driveway',
+                    status: false
                 }
             ])
         };
@@ -156,6 +158,7 @@ describe('Adding a goal', () => {
         goal: 'Get more sleep.',
         category: 'Personal health',
         name: 'Go to bed early',
+        status: false,
     };
     const newId = '5';
 
@@ -221,7 +224,7 @@ describe('Adding a goal', () => {
 // Editing a goal test is commented out as it currently doesn't pass
 // Need to fix this
 
-/!*describe('Editing a goal', () => {
+/*describe('Editing a goal', () => {
     let goal: GoalsComponent;
     let fixture: ComponentFixture<GoalsComponent>;
 
@@ -231,6 +234,7 @@ describe('Adding a goal', () => {
     editedGoal.name = 'Workout';
     editedGoal.goal = 'To get bigger and have a healthy body.';
     editedGoal.category = 'Health';
+    editedGoal.status = true;
 
     let calledGoal: Goal;
 
@@ -291,5 +295,4 @@ describe('Adding a goal', () => {
         goal.openDialogEdit(goalToEdit._id, goalToEdit.goal, goalToEdit.category, goalToEdit.name);
         expect(calledGoal).toEqual(editedGoal);
     });
-});*!/
-*/
+});*/
