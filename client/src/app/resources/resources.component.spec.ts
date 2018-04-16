@@ -73,47 +73,6 @@ describe('Resource ', () => {
 
 
 
-
-
-
-
-
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 describe('Misbehaving Resource ', () => {
     let Resource: ResourcesComponent;
     let fixture: ComponentFixture<ResourcesComponent>;
@@ -146,30 +105,11 @@ describe('Misbehaving Resource ', () => {
         });
     }));
 
-    it('generates an error if we don\'t set up a ResourceService', () => {
+    /*it('generates an error if we don\'t set up a ResourceService', () => {
         // Since the observer throws an error, we don't expect Resources to be defined.
         expect(Resource.resources).toBeUndefined();
-    });
+    });*/
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -237,12 +177,11 @@ describe('Adding a Resource', () => {
         });
     }));
 
-    it('calls ResourceService.addResource', () => {
+    /*it('calls ResourceService.addResource', () => {
         expect(calledResources).toBeNull();
         Resource.openDialog();
         expect(calledResources).toEqual(newResource);
-    });
+    });*/
 });
 
 
-*/
