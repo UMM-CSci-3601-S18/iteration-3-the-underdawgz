@@ -7,7 +7,7 @@
 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <mat-divider></mat-divider>
-                <h3><i>Filtering:</i></h3>
+                <h3><i>Your Emothion Summary</i></h3>
             </div>
         </mat-card>
         <mat-card id="graphCard">
@@ -19,15 +19,15 @@
                         <form>
                             <label> Which period of entries you want to look at?</label>
                             <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
-                                <option id ="Today" selected value="Today">Today</option>
-                                <option id ="This week" value="This week">This week</option>
+                                <!--<option id ="Today" selected value="Today">Today</option>-->
+                                <option id ="This week" selected value="This week">This week</option>
                                 <option id ="Last week" value="Last week">Last week</option>
                                 <option id ="Last month" value="Last month">Last month</option>
                             </select>
                             <br>
                         </form>
                         <br>
-                        <p>Otherwise you could select the date range from below</p>
+                        <!--<p>Otherwise you could select the date range from below</p>
                         <div id="filterContents">
                             <mat-form-field class="start">
                                 <input
@@ -51,7 +51,7 @@
                                 <mat-datepicker touchUi="true" #end></mat-datepicker>
                             </mat-form-field>
 
-                        </div>
+                        </div>-->
                         <button mat-raised-button id="filterButton" (click)="this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate); updateChart()">Update Graph</button>
                         <br>
                     </div>
