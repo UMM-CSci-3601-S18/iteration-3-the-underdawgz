@@ -22,6 +22,9 @@ import java.io.IOException;
 import umm3601.database.SummaryController;
 import umm3601.database.SummaryRequestHandler;
 
+import umm3601.database.CrisisController;
+import umm3601.database.CrisisRequestHandler;
+
 
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
@@ -50,6 +53,10 @@ public class Server {
 
         JournalController journalController = new JournalController(database);
         JournalRequestHandler journalRequestHandler = new JournalRequestHandler(journalController);
+
+        CrisisController crisisController = new CrisisController(database);
+        CrisisRequestHandler crisisRequestHandler = new CrisisRequestHandler(crisisController);
+
 
 
         //Configure Spark
@@ -97,13 +104,19 @@ public class Server {
         get("api/goals", goalRequestHandler::getGoals);
         get("api/goals/:id", goalRequestHandler::getGoalJSON);
         post("api/goals/new", goalRequestHandler::addNewGoal);
+        post("api/goals/complete", goalRequestHandler::completeGoal);
         post("api/goals/edit", goalRequestHandler::editGoal);
+
 
         //List summary page
         get("api/summarys", summaryRequestHandler::getSummaries);
 
         //Resources for appropriate response
         get("api/resources", resourceRequestHandler::getResources);
+        get("api/resources/:id", resourceRequestHandler::getResourceJSON);
+        post("api/resources/new", resourceRequestHandler::addNewResource);
+        delete("api/resources/delete/:id", resourceRequestHandler::deleteResource);
+
 
 
         //List journals, filtered using query parameters
@@ -111,6 +124,14 @@ public class Server {
         get("api/journals", journalRequestHandler::getJournals);
         get("api/journals/:id", journalRequestHandler::getJournalJSON);
         post("api/journals/new", journalRequestHandler::addNewJournal);
+
+        //Crisis for appropriate response
+        get("api/crisis/:id", crisisRequestHandler::getCrisisJSON);
+        get("api/crisis", crisisRequestHandler::getCrisis);
+        post("api/crisis/new", crisisRequestHandler::addNewCrisis);
+        post("api/crisis/edit", crisisRequestHandler::editCrisis);
+
+        //post("api/crisis/new", crisisRequestHandler::addCrisis);
 
 
         // An example of throwing an unhandled exception so you can see how the

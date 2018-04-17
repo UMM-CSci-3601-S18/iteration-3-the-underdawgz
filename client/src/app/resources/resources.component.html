@@ -3,7 +3,7 @@
 <main>
 <div layout='row' layout-xs="column" class="best-div">
 
-    <!-- Phone Numbers Card -->
+    <!-- Phone Numbers Card   -->
     <div class="phone-div">
     <mat-card class="phone-numbers">
         <mat-card-title class="phone-numbers-title"><mat-icon id="phone-icon">phone</mat-icon>Phone Numbers</mat-card-title>
@@ -58,33 +58,75 @@
     </div>
 
     <!-- Resources Card -->
-    <div class="main-div">
-    <mat-card class="main-card">
-        <mat-card-title id="main-thing-title">{{ this.title }}</mat-card-title>
-        <mat-divider></mat-divider>
-        <mat-card-header>This is a breathing exercise for when you are feeling stressed out. Breathe in as the image is building and out as the image shrinks.</mat-card-header>
-        <mat-card-content>
-            <img id="breathing" width= "100%" src="../../assets/images/ezgif.com-resize.gif">
-        </mat-card-content>
-    </mat-card>
+   <div class="main-div">
+        <mat-card class="main-card">
+            <h2>Resources</h2>
+            <mat-divider></mat-divider>
+            <mat-card-header>This is a breathing exercise for when you are feeling stressed out. Breathe in as the image is building and out as the image shrinks.</mat-card-header>
+            <mat-card-content>
+                <img id="breathing" width= "100%" src="../../assets/images/ezgif.com-resize.gif">
+            </mat-card-content>
+        </mat-card>
     </div>
 
     <!-- Links Card -->
     <div class="resources-div">
     <mat-card class="resources-card">
-        <mat-card-title id="resources-title">Links</mat-card-title>
+        <mat-card-title class="link-title"><mat-icon id="book-icon">book</mat-icon>Links</mat-card-title>
+
         <mat-card-subtitle>These links take you to helpful pages.</mat-card-subtitle>
+
+                <ul class="content-item" id="addNewResource"><button mat-raised-button (click)="openDialog()" class="resource-button"><mat-icon id="add-icon"> </mat-icon>Add a link</button></ul>
+
         <mat-card-content>
             <a href="https://depression.org.nz/get-better/self-help/" target="_blank">Depression Help</a>
             <br>
+
             <a href="https://www.everydayhealth.com/news/cheap-natural-quick-anxiety-remedies/" target="_blank">Anxiety Help</a>
             <br>
+
             <a href="http://www.apa.org/helpcenter/controlling-anger.aspx" target="_blank">Anger Management Help</a>
             <br>
+
             <a href="http://enlightenmentportal.com/development/self-esteem-building-activities/" target="_blank">Self Esteem Building Activities</a>
-            <mat-divider></mat-divider>
+
         </mat-card-content>
+
+
+             <mat-card-title class="your-resources-title">Your Added Links</mat-card-title>
+
+            <mat-card-subtitle class="your-links-subtitle">All of your added links are displayed here.</mat-card-subtitle>
+
+
+
+
+        <div style="height:300px;border:1px solid #ccc;font:16px/16px Georgia, Garamond, Serif;overflow:auto;">
+               <mat-list #elem class="resources" [id]="resource.title" *ngFor="let resource of this.filterResources(resourceTitle,resourceLink)"
+                         #elem [id]="resource._id['$oid']">
+          <a href="{{resource.link}}" target="_blank">{{resource.title}} </a>
+                 <button mat-icon-button class="button delete-button"
+                           (click)="deleteResource(resource._id['$oid'])">
+                       <mat-icon>delete</mat-icon>
+                   </button>
+
+               </mat-list>
+
+        </div>
+
+        <ng-template #resourcesError>
+                    <mat-error>
+                        There was a problem loading the links. Possibly the server is down or perhaps there are network
+                        issues.
+                    </mat-error>
+                    <mat-error>
+                        Please wait a bit and try again or start the server.
+                    </mat-error>
+                </ng-template>
+
+            <mat-divider></mat-divider>
+
     </mat-card>
+
     </div>
 
 </div>

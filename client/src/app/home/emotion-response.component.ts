@@ -1,7 +1,8 @@
+
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Resource} from './resource';
+import {ResourceEmotion} from './resourceEmotion';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 
@@ -26,7 +27,7 @@ export class EmotionResponseComponent {
 
 
     onYesClick(): void{
-        var linkObservable: Observable<Resource[]> = this.getLinks();
+        var linkObservable: Observable<ResourceEmotion[]> = this.getLinks();
         linkObservable.subscribe(
             links => {
                 console.log("successfully retrieved resource links from the database");
@@ -34,9 +35,7 @@ export class EmotionResponseComponent {
                 //code below used for attempt at variable videos. Unable to implement in Iteration 2
                 //var index = Math.floor(Math.random() * links.length);
                 //this.selectedResponse = this.sanitizer.bypassSecurityTrustResourceUrl(links[index].resource);
-
                 //console.log("this was chosen: " + this.selectedResponse);
-
                 //if(this.selectedResponse != ""){
                 //    this.giveResponse=true;
                 //}
@@ -49,8 +48,8 @@ export class EmotionResponseComponent {
 
     }
 
-    getLinks(): Observable<Resource[]> {
-        return this.http.get<Resource[]>(this.resourceUrl);
+    getLinks(): Observable<ResourceEmotion[]> {
+        return this.http.get<ResourceEmotion[]>(this.resourceUrl);
     }
 
     onExitClick(): void {

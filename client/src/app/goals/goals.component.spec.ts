@@ -29,18 +29,21 @@ describe('Goal ', () => {
                     goal: 'To have a more sanitary living environment.',
                     category: 'Chores',
                     name: 'Wash the dishes',
+                    status: true
                 },
                 {
                     _id: '2',
                     goal: 'To be beefy.',
                     category: 'Workout',
                     name: 'Go to gym',
+                    status: true,
                 },
                 {
                     _id: '3',
                     goal: 'To have a safer driveway.',
                     category: 'Chores',
                     name: 'Shovel driveway',
+                    status: false
                 }
             ])
         };
@@ -155,6 +158,7 @@ describe('Adding a goal', () => {
         goal: 'Get more sleep.',
         category: 'Personal health',
         name: 'Go to bed early',
+        status: false,
     };
     const newId = '5';
 
@@ -230,6 +234,7 @@ describe('Adding a goal', () => {
     editedGoal.name = 'Workout';
     editedGoal.goal = 'To get bigger and have a healthy body.';
     editedGoal.category = 'Health';
+    editedGoal.status = true;
 
     let calledGoal: Goal;
 
