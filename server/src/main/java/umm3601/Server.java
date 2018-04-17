@@ -95,23 +95,23 @@ public class Server {
 
         redirect.get("crisis", "/crisis");
 
-        redirect.get("/", "http://localhost:9000/crisis");
+        redirect.get("/crisis", "http://localhost:9000/crisis");
 
         redirect.get("goals", "/goals");
 
-        redirect.get("/", "http://localhost:9000/goals");
+        redirect.get("/goals", "http://localhost:9000/goals");
 
         redirect.get("journals", "/journals");
 
-        redirect.get("/", "http://localhost:9000/journals");
+        redirect.get("/journals", "http://localhost:9000/journals");
 
         redirect.get("resources", "/resources");
 
-        redirect.get("/", "http://localhost:9000/resources");
+        redirect.get("/resources", "http://localhost:9000/resources");
 
         redirect.get("summary", "/summary");
 
-        redirect.get("/", "http://localhost:9000/summary");
+        redirect.get("/summary", "http://localhost:9000/summary");
 
 
         /////////////// Endpoints ///////////////////
