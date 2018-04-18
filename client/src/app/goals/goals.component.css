@@ -1,18 +1,4 @@
-.main-top {
-    height: 100px;
-    color: white;
-    background-color: #ee6e73;
-    width: 100%;
-    font-size: 36px;
-    font-family: Roboto, sans-serif;
-    font-weight: normal;
-    line-height: 100px;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
-}
-
-.whole-body {
+body, .second-sec {
     background-color: #813772;
 }
 
@@ -26,9 +12,6 @@
 
 #add-icon{
     font-size: 80%;
-}
-
-.goal-button{
 }
 
 .goal-title {
@@ -75,8 +58,7 @@
 .goals{
     width: 30%;
     display: inline-block;
-    /*text-align: center;*/
-    margin: 0 auto;
+    margin: 1px;
     padding: 1%;
     background-color: silver;
     border-width: 2px;
@@ -91,10 +73,6 @@
 
 #mainCard{
     padding: 2%;
-    border-width: 5px;
-    border-color: black;
-    border-style: solid;
-
 }
 
 h2{
@@ -111,4 +89,16 @@ h2{
 
 #categoryInput, #title{
     float: inherit;
+}
+
+@media screen and (max-width: 600px) {
+    #search-box #submit{
+        columns: auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .goals{
+        min-width: 100%;
+    }
 }
